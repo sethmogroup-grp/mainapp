@@ -22,6 +22,7 @@
   box-sizing: border-box;
 }
 
+/* ---> Removed the overflow-x: hidden from here so Sticky works! <--- */
 html, body {
   margin: 0;
   padding: 0;

@@ -1,6 +1,9 @@
+/* =========================================
+   Global Section & Container
+========================================= */
 .pillars-details-section {
   width: 100%;
-  background-color: #f9f9f9; /* Light grey background for contrast */
+  background-color: #f9f9f9; 
   font-family: sans-serif;
   padding: 4rem 2rem;
 }
@@ -9,11 +12,13 @@
   max-width: 1300px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column; /* Mobile first: stacked */
+  flex-direction: column; 
   gap: 3rem;
 }
 
-/* --- LEFT SIDEBAR (Sticky) --- */
+/* =========================================
+   LEFT SIDEBAR (The Sticky Section)
+========================================= */
 .pillars-sidebar {
   width: 100%;
 }
@@ -27,13 +32,13 @@
 }
 
 .text-highlight {
-  color: #d3121b; /* Sethmo Red */
+  color: #d3121b; 
 }
 
 .pillars-deco-line {
   width: 80px;
   height: 6px;
-  background-color: #ffcc00; /* Sethmo Yellow */
+  background-color: #ffcc00; 
   margin-bottom: 2rem;
 }
 
@@ -44,7 +49,9 @@
   margin-bottom: 1.5rem;
 }
 
-/* --- RIGHT LIST (Scrollable) --- */
+/* =========================================
+   RIGHT LIST (The Scrollable Cards)
+========================================= */
 .pillars-list {
   width: 100%;
   display: flex;
@@ -113,33 +120,37 @@
   line-height: 1.6;
 }
 
-/* --- DESKTOP LAYOUT (Split Screen) --- */
+/* =========================================
+   DESKTOP LAYOUT (Split Screen & Sticky Fix)
+========================================= */
 @media (min-width: 992px) {
   .pillars-details-container {
-    flex-direction: row; /* Side by side */
-    align-items: flex-start; /* Aligns top */
+    flex-direction: row; 
+    align-items: flex-start; /* CRITICAL: Allows sidebar to be independent of list height */
   }
 
   .pillars-sidebar {
-    width: 35%; /* Takes up roughly 1/3 */
-    position: sticky; /* THE STICKY MAGIC */
-    top: 100px; /* Sticks 100px from top of screen */
-    height: fit-content;
+    width: 35%; 
+    /* ---> THE STICKY MAGIC <--- */
+    position: -webkit-sticky; 
+    position: sticky; 
+    top: 120px; /* Adjust this number if your navbar covers the text */
+    align-self: flex-start; /* Bulletproofs the sticky behavior */
   }
 
   .pillars-list {
-    width: 60%; /* Takes up roughly 2/3 */
+    width: 60%; 
     margin-left: auto;
   }
 
   .pillar-card {
-    flex-direction: row; /* Image Left, Text Right on cards */
+    flex-direction: row; 
     align-items: stretch;
   }
 
   .pillar-image-container {
     width: 40%;
-    height: auto; /* Full height of card */
+    height: auto; 
     min-height: 250px;
   }
   
