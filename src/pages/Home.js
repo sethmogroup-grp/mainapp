@@ -9,7 +9,6 @@ import SethmoSection from '../components/SethmoSection';
 import SevenPillars from '../components/SevenPillars';
 import SevenPillarsDetails from '../components/SevenPillarsDetails';
 import ContactUs from '../components/ContactUs';
-// REMOVED: import Footer ... (It is now in App.js)
 
 const Home = () => {
   const sectionsRef = useRef([]);
@@ -68,8 +67,8 @@ const Home = () => {
         // Clamp value so it doesn't go beyond 1
         const safeDist = Math.min(distance, 1);
 
-        // Animation calculations
-        const scale = 1 - safeDist * 0.08;      // Subtle shrink
+        /* ---> THE FIX: Set scale to 1 so the sections stop shrinking away from the edges while scrolling <--- */
+        const scale = 1; 
         const opacity = 1 - safeDist * 0.25;    // Slight fade
         const blur = safeDist * 1.5;            // Blur edges
         
@@ -158,8 +157,6 @@ const Home = () => {
           <ContactUs />
         </div>
       </section>
-
-      {/* REMOVED FOOTER FROM HERE (It is now in App.js) */}
 
     </main>
   );

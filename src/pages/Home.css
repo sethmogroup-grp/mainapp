@@ -9,7 +9,6 @@
   background: var(--bg-body);
 }
 
-
 /* =========================================
    DEFAULT STACKED SECTIONS
 ========================================= */
@@ -21,7 +20,6 @@
   overflow: hidden; /* prevents white gaps when scaling */
   background-color: var(--bg-body);
 }
-
 
 /* =========================================
    STICKY ANIMATED LAYER
@@ -48,12 +46,10 @@
     transform 220ms cubic-bezier(.2,.8,.2,1);
 }
 
-
 /* Active section appears above others */
 .section-inner.active {
   z-index: 5;
 }
-
 
 /* =========================================
    AUTO HEIGHT SECTION (SevenPillarsDetails)
@@ -79,7 +75,6 @@
   transition: none !important;
 }
 
-
 /* =========================================
    OPTIONAL: SECTION BACKGROUNDS
 ========================================= */
@@ -104,7 +99,6 @@
   background-color: #f9f9f9;
 }
 
-
 /* =========================================
    REMOVE IMAGE INLINE GAPS
 ========================================= */
@@ -113,7 +107,6 @@ img {
   display: block;
 }
 
-
 /* =========================================
    RESPONSIVE ADJUSTMENTS
 ========================================= */
@@ -121,7 +114,8 @@ img {
 @media (max-width: 1024px) {
 
   .section-inner {
-    padding: 24px;
+    /* ---> THE FIX: Changed from 24px to 0 to kill the white border! <--- */
+    padding: 0; 
     justify-content: center;
   }
 

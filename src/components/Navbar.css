@@ -21,12 +21,15 @@
   align-items: center;
   padding: 0;
   overflow: hidden; /* important for sliding menu */
+  
+  /* Added height to the transition so it animates cleanly on mobile */
   transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+              height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
               box-shadow 0.3s ease,
               backdrop-filter 0.3s ease;
 }
 
-/* Opened Menu */
+/* Opened Menu (Desktop) */
 .nav-container.open {
   width: fit-content;
   padding-right: 20px;
@@ -100,7 +103,7 @@
 }
 
 .nav-link:hover {
-  background-color: rgba(134, 187, 216, 0.15); /* subtle highlight */
+  background-color: rgba(134, 187, 216, 0.15);
   transform: scale(1.05);
 }
 
@@ -122,26 +125,32 @@
 }
 
 /* ------------------------------
-  4. Mobile / Tablet
+  4. Mobile / Tablet Fixes
 ------------------------------- */
 @media (max-width: 1024px) {
   .nav-container {
     top: 20px;
     left: 20px;
+    align-items: flex-start; /* Keeps the bird icon at the top when height expands */
+    flex-direction: column;
+  }
+
+  .nav-container.open {
+    width: 200px;  /* Expands width slightly */
+    height: 280px; /* Expands height downward to reveal links */
+    padding-right: 0;
+    border-radius: 30px; /* Keeps the bubble look */
   }
 
   .nav-menu {
-    gap: 12px;
-    padding-left: 10px;
+    gap: 15px;
+    padding: 0 20px 20px 20px;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 10px;
-    position: absolute;
-    top: 65px;
-    left: 0;
-    transform: translateY(-10px);
+    align-items: flex-start;
+    
+    /* Removed absolute positioning and extra backgrounds */
+    position: static; 
+    transform: translateY(-15px); 
   }
 
   .nav-container.open .nav-menu {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// ---> FIX: Import from the new 'lenis' package <---
+// ---> NEW: You MUST import the CSS file so React applies the layout fixes! <---
+import './App.css';
+
 import { ReactLenis } from 'lenis/react';
 
 // Import Components
@@ -20,7 +22,6 @@ import Careers from './pages/Careers';
 
 function App() {
   return (
-    /* ---> Wrap the entire app. The "root" prop tells Lenis to control the window scroll <--- */
     <ReactLenis root options={{ duration: 1.2, smoothWheel: true }}>
       <Router>
         <ScrollToTop />
@@ -39,14 +40,11 @@ function App() {
               
               {/* Community & News Routes */}
               <Route path="/community" element={<Community />} />
-              {/* We map /news to Community since it contains your blog/news articles */}
               <Route path="/news" element={<Community />} />
               
               {/* Support & Quick Links */}
               <Route path="/contact" element={<Contact />} />
               <Route path="/careers" element={<Careers />} />
-              
-              {/* Sustainability can be added here once the page is designed */}
             </Routes>
           </div>
           
