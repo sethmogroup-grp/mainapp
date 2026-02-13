@@ -9,18 +9,18 @@
 .big-statement {
   position: relative;
   width: 100%;
+  height: 100vh; /* ---> FIX: Forces the blue background to fill the screen to create a section break <--- */
   background-color: var(--color-deep-blue);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Removed min-height: 100vh so the image scales naturally without cropping */
 }
 
 /* === Image Styling === */
 .responsive-bg {
   width: 100%;
-  height: auto; /* Maintains perfect aspect ratio */
+  height: 100%; /* ---> FIX: Forces the image to fit safely inside the 100vh box without cropping <--- */
   display: block;
   object-fit: contain;
   will-change: transform;
@@ -29,7 +29,7 @@
 
 @keyframes slowZoom {
   0% { transform: scale(1); }
-  100% { transform: scale(1.02); /* Slightly reduced zoom so text doesn't hit the edges */ }
+  100% { transform: scale(1.02); }
 }
 
 /* === Decorative accent line (bottom right) === */

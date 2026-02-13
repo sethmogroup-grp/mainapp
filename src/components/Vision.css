@@ -1,21 +1,27 @@
-/* Container for the whole section */
+/* =========================================
+   Container for the whole section
+========================================= */
 .vision-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 600px;
-  font-family: sans-serif; /* Replace with your specific font if you have one */
+  height: auto; /* ---> FIX: Ensures the container stretches to fit all text on mobile <--- */
+  min-height: 100vh; /* Ensures it at least fills the screen on desktop */
+  font-family: sans-serif;
   position: relative;
 }
 
-/* LEFT SIDE: Red Background Area */
+/* =========================================
+   LEFT SIDE: Red Background Area
+========================================= */
 .vision-content-left {
   width: 100%;
-  background-color: #d3121b; /* The specific red from the screenshot */
+  background-color: #d3121b; 
   padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-grow: 1; /* Allows the red area to expand and hold the text */
 }
 
 /* Desktop layout for the red area: Heading Left, Text Right */
@@ -39,7 +45,7 @@
 .vision-deco-line {
   width: 80px;
   height: 5px;
-  background-color: #ffcc00; /* Yellow */
+  background-color: #ffcc00; 
   margin-bottom: 1.5rem;
 }
 
@@ -62,7 +68,7 @@
 
 /* The Column with the Paragraphs */
 .vision-text-col {
-  flex: 2; /* Takes up more space than the heading */
+  flex: 2; 
   color: white;
   font-size: 0.95rem;
   line-height: 1.6;
@@ -88,10 +94,12 @@
   color: #ffeebb;
 }
 
-/* RIGHT SIDE: Image Area */
+/* =========================================
+   RIGHT SIDE: Image Area
+========================================= */
 .vision-image-col {
   width: 100%;
-  min-height: 300px;
+  min-height: 350px; /* Gives the image a solid height on mobile */
   position: relative;
 }
 
@@ -126,10 +134,14 @@
   background-color: #000;
 }
 
-/* DESKTOP MEDIA QUERY (min-width: 992px) */
+/* =========================================
+   DESKTOP MEDIA QUERY (min-width: 992px)
+========================================= */
 @media (min-width: 992px) {
   .vision-container {
     flex-direction: row; /* Side by side layout */
+    min-height: 600px;
+    height: 100vh;
   }
 
   .vision-content-left {
@@ -139,6 +151,7 @@
 
   .vision-image-col {
     width: 35%; /* Image area takes 35% */
+    min-height: 100%;
   }
 
   .vision-inner-row {
