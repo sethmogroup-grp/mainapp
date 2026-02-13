@@ -1,159 +1,159 @@
 /* ------------------------------
-  1. Main Container: Floating Glass Pill
+  1. MASTER FAB CONTAINER
+  Positioned at the bottom-right "thumb zone"
 ------------------------------- */
-.nav-container {
+.fab-nav-container {
   position: fixed;
-  top: 30px;
-  left: 30px;
-  z-index: 1000;
-
-  /* Closed pill shape */
-  height: 60px;
-  width: 60px;
-  border-radius: 30px;
-
-  /* Glassmorphism + Corporate feel */
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 25px rgba(4, 64, 102, 0.25);
-
+  bottom: 30px;
+  right: 30px;
+  z-index: 2500; /* Extremely high to stay above all scroll animations */
   display: flex;
-  align-items: center;
-  padding: 0;
-  overflow: hidden; /* important for sliding menu */
-  
-  /* Added height to the transition so it animates cleanly on mobile */
-  transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.3s ease,
-              backdrop-filter 0.3s ease;
-}
-
-/* Opened Menu (Desktop) */
-.nav-container.open {
-  width: fit-content;
-  padding-right: 20px;
-  box-shadow: 0 12px 35px rgba(4, 64, 102, 0.35);
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: sans-serif;
 }
 
 /* ------------------------------
-  2. Logo Button
+  2. THE RED TRIGGER BUTTON (FAB)
 ------------------------------- */
-.nav-logo-btn {
-  width: 60px;
-  height: 60px;
+.fab-trigger {
+  width: 65px;
+  height: 65px;
+  background-color: #d3121b; /* Sethmo Red */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  z-index: 2;
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 30px rgba(211, 18, 27, 0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 2502;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.nav-logo-btn:hover {
-  transform: scale(1.08);
+.fab-trigger:hover {
+  transform: scale(1.1) translateY(-5px);
+  background-color: #b30f16;
+  box-shadow: 0 12px 35px rgba(211, 18, 27, 0.6);
 }
 
-/* Icon Image */
-.nav-icon-img {
-  width: 40px;
-  height: 40px;
+.fab-trigger:active {
+  transform: scale(0.9);
+}
+
+.fab-icon {
+  width: 32px;
+  height: 32px;
   object-fit: contain;
-  border-radius: 50%;
+  filter: brightness(0) invert(1); /* Forces your icon to be pure white */
+  transition: transform 0.4s ease;
+}
+
+/* Rotate the bird logo slightly when the menu opens */
+.fab-icon.rotate {
+  transform: rotate(180deg);
 }
 
 /* ------------------------------
-  3. Menu Links
+  3. THE FLOATING MENU CONTENT
 ------------------------------- */
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  /* Hidden by default */
-  opacity: 0;
-  pointer-events: none;
-  white-space: nowrap;
-  transform: translateX(-20px);
-  transition: all 0.3s ease;
-  padding-left: 10px;
-}
-
-/* Show menu when open (slide/fade in) */
-.nav-container.open .nav-menu {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(0);
-  transition-delay: 0.1s;
-}
-
-/* Links */
-.nav-link {
-  text-decoration: none;
-  color: var(--color-deep-blue);
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 8px 16px;
-  border-radius: 20px;
-  transition: background 0.2s, transform 0.2s ease;
-  position: relative;
-}
-
-.nav-link:hover {
-  background-color: rgba(134, 187, 216, 0.15);
-  transform: scale(1.05);
-}
-
-/* Optional underline animation */
-.nav-link::after {
-  content: '';
+.fab-menu {
   position: absolute;
-  left: 50%;
-  bottom: 2px;
-  width: 0%;
-  height: 2px;
-  background-color: var(--color-gold);
-  transition: width 0.3s ease, left 0.3s ease;
+  bottom: 85px; /* Sits 20px above the button */
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  /* Hidden State Logic */
+  opacity: 0;
+  transform: translateY(30px) scale(0.8);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 2501;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-  left: 0;
+/* Visible State Logic */
+.fab-nav-container.open .fab-menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 /* ------------------------------
-  4. Mobile / Tablet Fixes
+  4. INDIVIDUAL MENU LINKS
+  Pill-shaped glassmorphism style
 ------------------------------- */
-@media (max-width: 1024px) {
-  .nav-container {
-    top: 20px;
-    left: 20px;
-    align-items: flex-start; /* Keeps the bird icon at the top when height expands */
-    flex-direction: column;
+.fab-link {
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 40px;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 1px solid rgba(211, 18, 27, 0.1);
+  display: block;
+}
+
+.fab-link:hover {
+  background-color: #d3121b;
+  color: #ffffff;
+  transform: translateX(-8px);
+  box-shadow: -5px 5px 15px rgba(211, 18, 27, 0.2);
+}
+
+/* ------------------------------
+  5. BLURRED BACKDROP OVERLAY
+  Closes menu when clicked
+------------------------------- */
+.fab-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 64, 102, 0.15); /* Tinted with your deep blue */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2499;
+  animation: fabFadeIn 0.3s ease forwards;
+}
+
+@keyframes fabFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ------------------------------
+  6. RESPONSIVE ADJUSTMENTS
+------------------------------- */
+@media (max-width: 768px) {
+  .fab-nav-container {
+    bottom: 25px;
+    right: 25px;
+  }
+  
+  .fab-trigger {
+    width: 60px;
+    height: 60px;
   }
 
-  .nav-container.open {
-    width: 200px;  /* Expands width slightly */
-    height: 280px; /* Expands height downward to reveal links */
-    padding-right: 0;
-    border-radius: 30px; /* Keeps the bubble look */
+  .fab-menu {
+    bottom: 75px;
+    gap: 12px;
   }
 
-  .nav-menu {
-    gap: 15px;
-    padding: 0 20px 20px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    
-    /* Removed absolute positioning and extra backgrounds */
-    position: static; 
-    transform: translateY(-15px); 
-  }
-
-  .nav-container.open .nav-menu {
-    transform: translateY(0);
+  .fab-link {
+    padding: 12px 24px;
+    font-size: 0.95rem;
   }
 }
