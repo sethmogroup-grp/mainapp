@@ -6,27 +6,25 @@ import icon from '../assets/icon.png';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <nav className={`fab-nav-container ${isOpen ? 'open' : ''}`}>
+    <nav className={`nav-container ${isOpen ? 'open' : ''}`}>
       
-      {/* The Menu Content (appears above the button) */}
-      <div className="fab-menu">
-        <Link to="/" className="fab-link" onClick={closeMenu}>Home</Link>
-        <Link to="/about" className="fab-link" onClick={closeMenu}>About</Link>
-        <Link to="/services" className="fab-link" onClick={closeMenu}>Services</Link>
-        <Link to="/community" className="fab-link" onClick={closeMenu}>Community</Link>
+      {/* Bird Icon Logo / Toggle Button */}
+      <div className="nav-logo-btn" onClick={toggleMenu}>
+        <img src={icon} alt="Sethmo Icon" className="nav-icon-img" />
       </div>
 
-      {/* The Actual Floating Button */}
-      <button className="fab-trigger" onClick={toggleMenu} aria-label="Toggle Menu">
-        <img src={icon} alt="Menu" className={`fab-icon ${isOpen ? 'rotate' : ''}`} />
-      </button>
+      <div className="nav-menu">
+        <Link to="/" className="nav-link" onClick={() => setIsOpen(false)}>Home</Link>
+        <Link to="/about" className="nav-link" onClick={() => setIsOpen(false)}>About</Link>
+        <Link to="/services" className="nav-link" onClick={() => setIsOpen(false)}>Services</Link>
+        <Link to="/community" className="nav-link" onClick={() => setIsOpen(false)}>Community</Link>
+      </div>
 
-      {/* Optional: Dark backdrop to focus on menu when open */}
-      {isOpen && <div className="fab-overlay" onClick={closeMenu}></div>}
     </nav>
   );
 };
