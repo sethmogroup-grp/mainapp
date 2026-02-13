@@ -1,0 +1,219 @@
+/* Page Container */
+.about-page {
+  width: 100%;
+  font-family: sans-serif;
+  color: #333;
+  padding-top: 0;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* =========================================
+   1. MAIN HERO (Top of Page)
+   ========================================= */
+.about-hero {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Taller main hero */
+  min-height: 500px;
+  background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.about-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 2rem;
+  max-width: 900px;
+}
+
+.about-hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.highlight-text { color: #d3121b; }
+
+.hero-deco-line {
+  width: 100px;
+  height: 6px;
+  background-color: #ffcc00;
+  margin: 0 auto 2rem auto;
+}
+
+.hero-motto {
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   2. EXECUTIVE SUMMARY (Red Block)
+   ========================================= */
+.exec-summary-section {
+  background-color: #d3121b; /* Sethmo Red */
+  padding: 6rem 2rem;
+  color: white;
+}
+
+.exec-summary-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+}
+
+.exec-heading {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #ffcc00; /* Yellow */
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+
+.summary-text-block {
+  flex: 2;
+  padding-left: 3rem; /* Space between title and text on desktop */
+}
+
+.summary-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.summary-text strong { color: #ffcc00; }
+
+/* =========================================
+   3. SECTION HEROES (The "Hero per section")
+   ========================================= */
+.section-hero {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Shorter banners */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Darker overlay for text pop */
+  z-index: 1;
+}
+
+.section-hero-title {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 4px solid white;
+  padding: 10px 30px;
+}
+
+/* Background Images for each section */
+.mission-hero {
+  background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1600'); /* Tech/Globe */
+}
+
+.team-hero {
+  background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1600'); /* Meeting/People */
+}
+
+.pillars-hero {
+  background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&q=80&w=1600'); /* Building/Structure */
+}
+
+/* =========================================
+   4. CONTENT SECTIONS
+   ========================================= */
+.mission-vision-container {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.mv-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-top: 5px solid #d3121b;
+  text-align: center;
+}
+
+.card-icon {
+  width: 70px;
+  height: 70px;
+  background: #fff0f0;
+  color: #d3121b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+}
+
+.about-pillars-section {
+  padding: 5rem 2rem;
+  background-color: #f8f9fa;
+}
+
+.pillars-intro-block {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+  .exec-summary-container {
+    flex-direction: column;
+  }
+  
+  .summary-text-block {
+    padding-left: 0;
+  }
+  
+  .about-hero-title { font-size: 2.5rem; }
+  .exec-heading { font-size: 3rem; }
+  .section-hero-title { font-size: 2rem; }
+}

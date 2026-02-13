@@ -1,0 +1,278 @@
+/* Contact.css – Overlap Fixed – Phone Size Preserved */
+
+.contact-page {
+  width: 100%;
+  background: #fff;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* --- HERO SECTION --- */
+.contact-hero {
+  background-color: #d3121b;
+  min-height: 80vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.contact-hero-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+/* ✅ WATERMARK FIXED (No Text Collision) */
+.hero-watermark {
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 0;
+  max-width: 70%;
+  text-align: right;
+  overflow: hidden;
+}
+
+.hero-watermark h1 {
+  font-size: clamp(6rem, 15vw, 20rem);
+  font-weight: 900;
+  color: #ffcc00;
+  margin: 0;
+  line-height: 0.85;
+  white-space: nowrap;
+  opacity: 0.15; /* softer so it never competes */
+}
+
+/* HERO GRID */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  gap: 4rem;
+}
+
+/* ================= PHONE VISUAL ================= */
+
+.phone-visual {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* 🚫 SIZE NOT CHANGED */
+.device-frame {
+  width: 220px;
+  height: 440px;
+  background: #1a1a1a;
+  border-radius: 35px;
+  border: 4px solid #ff5555;
+  padding: 12px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  overflow: hidden; /* Prevent inner spill */
+}
+
+.device-screen {
+  width: 100%;
+  height: 100%;
+  background: #222;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 1.2rem 1.8rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.caller-avatar {
+  width: 70px;
+  height: 70px;
+  background: #333;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.device-screen h3 {
+  color: #ffcc00;
+  margin: 0;
+  font-size: 1.1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.device-screen span {
+  color: #888;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+.decline-btn {
+  width: 55px;
+  height: 55px;
+  background: #ff3b30;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(135deg);
+  flex-shrink: 0;
+}
+
+/* ================= TEXT CONTENT ================= */
+
+.main-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #ffcc00;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  word-wrap: break-word;
+}
+
+.main-desc {
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 500px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* --- BODY SECTION --- */
+
+.contact-body {
+  padding: 6rem 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.body-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 5rem;
+}
+
+/* Sidebar */
+.info-item {
+  margin-bottom: 3rem;
+}
+
+.info-item span {
+  display: block;
+  font-weight: 800;
+  color: #d3121b;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.info-item p {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a1a;
+  word-wrap: break-word;
+}
+
+/* ================= FORM ================= */
+
+.modern-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.modern-form input,
+.modern-form textarea {
+  width: 100%;
+  padding: 1.2rem;
+  border: 2px solid #f0f0f0;
+  background: #fdfdfd;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.modern-form input:focus,
+.modern-form textarea:focus {
+  border-color: #d3121b;
+}
+
+.modern-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.modern-form button {
+  background: #d3121b;
+  color: #fff;
+  border: none;
+  padding: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.modern-form button:hover {
+  background: #ffcc00;
+  color: #111;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .hero-watermark {
+    right: -2%;
+    max-width: 90%;
+  }
+
+  .hero-watermark h1 {
+    font-size: 10rem;
+    opacity: 0.1;
+  }
+
+  .main-desc {
+    margin: 0 auto;
+  }
+
+  .body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-watermark h1 {
+    opacity: 0.05;
+    font-size: 8rem;
+  }
+}

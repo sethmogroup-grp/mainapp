@@ -1,0 +1,248 @@
+/* Page Background */
+.services-page {
+  width: 100%;
+  font-family: sans-serif;
+  background-color: #f4f4f4; /* Light grey base */
+  min-height: 100vh;
+  padding-top: 0; /* REMOVED padding: Hero handles top spacing */
+}
+
+/* --- 1. HERO HEADER STYLES (New) --- */
+.services-hero {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Takes up 60% of screen height */
+  min-height: 400px;
+  /* Background Image: Industrial/Global Business theme */
+  background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.services-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: 1;
+}
+
+.services-hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 2rem;
+  max-width: 900px;
+}
+
+.services-hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.highlight-text {
+  color: #d3121b; /* Sethmo Red */
+}
+
+.hero-deco-line {
+  width: 100px;
+  height: 6px;
+  background-color: #ffcc00; /* Sethmo Yellow */
+  margin: 0 auto 2rem auto;
+  border-radius: 3px;
+}
+
+.services-hero-subtitle {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.6;
+  opacity: 0.95;
+  color: #f0f0f0;
+}
+
+/* Responsive Font Size */
+@media (min-width: 768px) {
+  .services-hero-title {
+    font-size: 5rem;
+  }
+}
+
+/* --- 2. Intro Styling --- */
+.services-intro {
+  background-color: #fff;
+  padding: 4rem 2rem; /* Increased padding */
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.intro-container {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.2rem; /* Larger font */
+  color: #444;
+  line-height: 1.8;
+}
+
+/* --- 3. Grid Layout --- */
+.services-grid-section {
+  padding: 5rem 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  /* Responsive grid: fits as many 300px cards as possible */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+/* --- 4. Card Design --- */
+.service-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-bottom: 4px solid transparent; 
+}
+
+.service-card:hover {
+  transform: translateY(-10px); /* Lift higher */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  border-bottom: 4px solid #d3121b; /* Red underline */
+}
+
+/* Image Area */
+.service-img-wrapper {
+  height: 220px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.service-card:hover .service-img {
+  transform: scale(1.1);
+}
+
+/* Overlay with Icon */
+.service-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-overlay {
+  opacity: 1;
+}
+
+.overlay-icon {
+  font-size: 2rem;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content Area */
+.service-content {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-icon-box {
+  margin-bottom: 1rem;
+}
+
+.service-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #f4f4f4; /* Subtle background number */
+  line-height: 1;
+  position: absolute;
+  top: 230px; /* Overlapping slightly */
+  right: 20px;
+  z-index: 0;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.8rem;
+  z-index: 1;
+}
+
+.service-desc {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.service-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  color: #d3121b;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+.service-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #d3121b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.service-btn:hover::after {
+  transform: scaleX(1);
+}

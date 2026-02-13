@@ -1,0 +1,370 @@
+/* Page Background */
+.sector-detail-page {
+  width: 100%;
+  font-family: sans-serif;
+  background-color: #fff;
+  color: #1a1a1a;
+}
+
+/* =========================================
+   1. HERO SECTION (Parallax & Bold)
+   ========================================= */
+.sector-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sector-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax Effect */
+  z-index: 0;
+}
+
+.sector-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
+  z-index: 1;
+}
+
+.sector-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  color: white;
+}
+
+.sector-breadcrumbs {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sector-breadcrumbs a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.sector-breadcrumbs a:hover {
+  color: #ffcc00;
+}
+
+.sector-hero-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.text-highlight {
+  color: #ffcc00; /* Sethmo Yellow */
+}
+
+/* =========================================
+   2. MAIN CONTAINER (Grid Layout)
+   ========================================= */
+.sector-container {
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Fixed Sidebar | Flexible Content */
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+/* --- LEFT SIDEBAR (Sticky) --- */
+.sector-sidebar {
+  position: relative;
+}
+
+.sidebar-inner {
+  position: sticky;
+  top: 100px; /* Stacks nicely under navbar */
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #d3121b;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 3rem;
+}
+
+.sidebar-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #666;
+  padding: 10px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.sidebar-nav li.active a,
+.sidebar-nav a:hover {
+  background-color: #f4f4f4;
+  color: #d3121b;
+  font-weight: 700;
+}
+
+.nav-num {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-right: 10px;
+  font-weight: 400;
+}
+
+.sidebar-nav li.active .nav-num {
+  color: #d3121b;
+}
+
+/* Sidebar CTA Box */
+.sidebar-cta {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.sidebar-cta h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.sidebar-btn {
+  display: inline-block;
+  background-color: #d3121b;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+  transition: background 0.3s;
+}
+
+.sidebar-btn:hover {
+  background-color: #ffcc00;
+  color: #1a1a1a;
+}
+
+/* --- RIGHT CONTENT --- */
+.sector-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #d3121b;
+  margin-top: 5px;
+}
+
+.lead-paragraph {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* Capabilities Card */
+.capabilities-card {
+  background: #fff;
+  border-left: 5px solid #ffcc00;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.cap-icon {
+  font-size: 2rem;
+  color: #ffcc00;
+  margin-bottom: 1rem;
+}
+
+.cap-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+.regular-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* Visual Strip */
+.visual-strip {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+  padding-top: 2rem;
+}
+
+.stat-item {
+  flex: 1;
+}
+
+.stat-num {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #d3121b;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   3. NEXT SECTOR NAV (Footer Area)
+   ========================================= */
+.next-sector-nav {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+}
+
+.next-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.next-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  transition: background 0.5s ease;
+}
+
+.next-content {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.next-label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #ccc;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.next-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  color: white;
+}
+
+/* Hover Effects for Next Sector */
+.next-sector-nav:hover .next-bg {
+  transform: scale(1.1);
+}
+
+.next-sector-nav:hover .next-overlay {
+  background: rgba(211, 18, 27, 0.85); /* Turns Red on Hover */
+}
+
+.next-sector-nav:hover .next-content {
+  transform: translateY(-5px);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 992px) {
+  .sector-container {
+    grid-template-columns: 1fr; /* Stack layout on tablets */
+    gap: 3rem;
+  }
+  
+  .sidebar-inner {
+    position: static;
+  }
+  
+  .sidebar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .sidebar-nav li {
+    flex: 1 1 auto;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+  }
+  
+  .sector-hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-nav {
+    display: block; /* Back to list on mobile */
+  }
+  
+  .next-title {
+    font-size: 2rem;
+  }
+  
+  .visual-strip {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

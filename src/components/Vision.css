@@ -1,0 +1,148 @@
+/* Container for the whole section */
+.vision-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 600px;
+  font-family: sans-serif; /* Replace with your specific font if you have one */
+  position: relative;
+}
+
+/* LEFT SIDE: Red Background Area */
+.vision-content-left {
+  width: 100%;
+  background-color: #d3121b; /* The specific red from the screenshot */
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Desktop layout for the red area: Heading Left, Text Right */
+.vision-inner-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The Column with the "Our Mission" Heading */
+.vision-heading-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* The Yellow Decorative Line */
+.vision-deco-line {
+  width: 80px;
+  height: 5px;
+  background-color: #ffcc00; /* Yellow */
+  margin-bottom: 1.5rem;
+}
+
+.vision-label {
+  color: #ffcc00;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.vision-title {
+  color: #ffcc00;
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* The Column with the Paragraphs */
+.vision-text-col {
+  flex: 2; /* Takes up more space than the heading */
+  color: white;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.vision-block {
+  margin-bottom: 1.5rem;
+}
+
+.vision-subtitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.vision-tagline {
+  margin-top: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #ffeebb;
+}
+
+/* RIGHT SIDE: Image Area */
+.vision-image-col {
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+}
+
+.vision-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Scroll Top Button */
+.scroll-top-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1a1a1a;
+  border: none;
+  color: #ffcc00;
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  z-index: 10;
+}
+
+.scroll-top-btn:hover {
+  transform: translateY(-3px);
+  background-color: #000;
+}
+
+/* DESKTOP MEDIA QUERY (min-width: 992px) */
+@media (min-width: 992px) {
+  .vision-container {
+    flex-direction: row; /* Side by side layout */
+  }
+
+  .vision-content-left {
+    width: 65%; /* Red area takes 65% */
+    padding: 4rem 5rem;
+  }
+
+  .vision-image-col {
+    width: 35%; /* Image area takes 35% */
+  }
+
+  .vision-inner-row {
+    flex-direction: row; /* Align Heading and Text side-by-side inside red area */
+    gap: 4rem;
+  }
+}
