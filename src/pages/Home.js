@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
+import { useLenis } from 'lenis/react'; 
 import './Home.css';
 
-// --- Import all your components ---
+// --- Components ---
 import Hero from '../components/Hero';
 import BigStatement from '../components/BigStatement';
 import Vision from '../components/Vision';
@@ -11,103 +12,78 @@ import SevenPillarsDetails from '../components/SevenPillarsDetails';
 import ContactUs from '../components/ContactUs';
 
 const Home = () => {
-  const sectionsRef = useRef([]);
+  // 1. Scope all DOM queries to this specific container to prevent grabbing elements from other pages
+  const containerRef = useRef(null);
+  const animatedSectionsRef = useRef([]);
 
+  // 2. INTERSECTION OBSERVER: Handles active states for z-index
   useEffect(() => {
-    // Select only standard "snap" sections for the heavy animation effects.
-    // We EXCLUDE sections marked with 'section-auto' (like Pillars Details & Contact)
-    const animatedSections = Array.from(
-      document.querySelectorAll('.section-inner:not(.section-auto)')
+    if (!containerRef.current) return;
+
+    // Safely query only inside the Home container
+    const allSections = Array.from(containerRef.current.querySelectorAll('.section-inner'));
+    animatedSectionsRef.current = Array.from(
+      containerRef.current.querySelectorAll('.section-inner:not(.section-auto)')
     );
 
-    sectionsRef.current = animatedSections;
-
-    /* ================================
-       1. INTERSECTION OBSERVER
-       Controls 'active' class for z-index stacking or fade-ins
-    ================================= */
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const el = entry.target;
-          // Trigger active state when 30% visible
           if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-            el.classList.add('active');
+            entry.target.classList.add('active');
           } else {
-            el.classList.remove('active');
+            entry.target.classList.remove('active');
           }
         });
       },
-      {
-        threshold: [0.2, 0.3, 0.4],
-      }
+      { threshold: [0.2, 0.3, 0.4] }
     );
 
-    // Observe ALL sections (even auto ones) for basic fade-in effects
-    const allSections = document.querySelectorAll('.section-inner');
     allSections.forEach((section) => observer.observe(section));
 
-    /* ================================
-       2. SCROLL TRANSFORM EFFECT
-       Scale / Blur / Parallax (Only for standard sections)
-    ================================= */
-    const handleScroll = () => {
-      const viewportHeight = window.innerHeight;
-      const viewportCenter = viewportHeight / 2;
-
-      animatedSections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const sectionCenter = rect.top + rect.height / 2;
-
-        // Calculate distance from center (normalized)
-        const distance =
-          Math.abs(sectionCenter - viewportCenter) /
-          (viewportHeight / 1.5);
-
-        // Clamp value so it doesn't go beyond 1
-        const safeDist = Math.min(distance, 1);
-
-        /* ---> THE FIX: Set scale to 1 so the sections stop shrinking away from the edges while scrolling <--- */
-        const scale = 1; 
-        const opacity = 1 - safeDist * 0.25;    // Slight fade
-        const blur = safeDist * 1.5;            // Blur edges
-        
-        const direction = sectionCenter - viewportCenter;
-        const translateY = direction * 0.04;    // Subtle parallax shift
-
-        // Apply styles
-        section.style.transform = `scale(${scale}) translateY(${translateY}px)`;
-        section.style.opacity = `${opacity}`;
-        section.style.filter = `blur(${blur}px)`;
-      });
-    };
-
-    const onScroll = () => requestAnimationFrame(handleScroll);
-
-    // Hook into Lenis if available
-    if (window.lenis && typeof window.lenis.on === 'function') {
-      window.lenis.on('scroll', handleScroll);
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Initial run to set positions
-    handleScroll();
-
-    /* ================================
-       CLEANUP
-    ================================= */
-    return () => {
-      if (window.lenis && typeof window.lenis.off === 'function') {
-        window.lenis.off('scroll', handleScroll);
-      }
-      window.removeEventListener('scroll', onScroll);
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
+  // 3. SCROLL MATH: Wrapped in useCallback for memory optimization
+  const handleScroll = useCallback(() => {
+    if (!animatedSectionsRef.current.length) return;
+
+    const viewportHeight = window.innerHeight;
+    const viewportCenter = viewportHeight / 2;
+
+    animatedSectionsRef.current.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const sectionCenter = rect.top + rect.height / 2;
+
+      // Calculate distance from center (normalized)
+      const distance = Math.abs(sectionCenter - viewportCenter) / (viewportHeight / 1.5);
+      const safeDist = Math.min(distance, 1);
+
+      // Animation calculations
+      const scale = 1; 
+      const opacity = 1 - safeDist * 0.25;    
+      const blur = safeDist * 1.5;            
+      const translateY = (sectionCenter - viewportCenter) * 0.04;    
+
+      // Direct DOM mutation for 60fps performance
+      section.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+      section.style.opacity = `${opacity}`;
+      section.style.filter = `blur(${blur}px)`;
+    });
+  }, []);
+
+  // 4. LENIS HOOK: Automatically hooks into the native smooth scroll loop
+  useLenis(handleScroll);
+
+  // Fallback for native scrolling (initial load or if Lenis is inactive)
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Trigger once on mount to set initial positions
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
   return (
-    <main className="home-container">
+    <main className="home-container" ref={containerRef}>
 
       {/* 1. Hero */}
       <section className="snap-section">
@@ -123,9 +99,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. Vision */}
-      <section className="snap-section">
-        <div className="section-inner vision-section">
+      {/* 3. Vision ---> THE FIX: Changed to auto-height so mobile text fits perfectly <--- */}
+      <section className="snap-section snap-auto" style={{ height: 'auto', minHeight: '100vh' }}>
+        <div className="section-inner section-auto vision-section">
           <Vision />
         </div>
       </section>
