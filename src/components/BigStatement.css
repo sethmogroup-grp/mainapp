@@ -9,30 +9,27 @@
 .big-statement {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  background-color: var(--color-deep-blue);
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background-color: var(--color-deep-blue);
+  /* Removed min-height: 100vh so the image scales naturally without cropping */
 }
 
-/* === Background image layer === */
-.bg-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* === Image Styling === */
+.responsive-bg {
   width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center left;
-  background-repeat: no-repeat;
+  height: auto; /* Maintains perfect aspect ratio */
+  display: block;
+  object-fit: contain;
   will-change: transform;
   animation: slowZoom 20s infinite alternate;
 }
 
 @keyframes slowZoom {
   0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
+  100% { transform: scale(1.02); /* Slightly reduced zoom so text doesn't hit the edges */ }
 }
 
 /* === Decorative accent line (bottom right) === */
@@ -49,8 +46,8 @@
 
 /* === Responsive: Tablet & Mobile === */
 @media (max-width: 1024px) {
-  .bg-layer {
-    animation: none; /* smoother on mobile */
+  .responsive-bg {
+    animation: none; /* Smoother performance on mobile */
   }
 
   .accent-line {
@@ -61,11 +58,7 @@
 }
 
 @media (max-width: 768px) {
-  .big-statement {
-    min-height: 90vh;
-  }
-
   .accent-line {
-    display: none; /* cleaner on small screens */
+    display: none; /* Hidden on mobile to keep the layout clean */
   }
 }
