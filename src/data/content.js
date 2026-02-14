@@ -9,7 +9,6 @@ export const companyInfo = {
 };
 
 // 2. Services / Sectors Data
-// Slugs match the Link 'to' properties in your Footer for seamless navigation.
 export const sectors = [
   {
     id: 1,
@@ -149,5 +148,52 @@ export const newsArticles = [
     title: "Digital Transformation: The Future of Logistics",
     excerpt: "How Sethmo Logistics is utilizing AI and real-time tracking to reduce delivery times and carbon footprints across the region.",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1000"
+  }
+];
+
+// 5. Sustainability Data
+export const sustainabilityFocus = [
+  {
+    id: 1,
+    title: "Environmental Stewardship",
+    desc: "We are committed to reducing our carbon footprint across our manufacturing and logistics sectors by investing in green energy and sustainable farming practices in our agribusiness.",
+    icon: "🌱"
+  },
+  {
+    id: 2,
+    title: "Community Upliftment",
+    desc: "Through our partnership with the Thapelo Foundation, we actively invest in rural education, healthcare, and skills development programs in Zambia.",
+    icon: "🤝"
+  },
+  {
+    id: 3,
+    title: "Ethical Governance",
+    desc: "Transparency, safety, and accountability are the bedrock of our mining and financial operations, ensuring we create value responsibly.",
+    icon: "⚖️"
+  }
+];
+
+// 6. Careers Data
+export const openPositions = [
+  {
+    id: 1,
+    title: "Senior Brand Strategist",
+    department: "Branding & Design",
+    location: "Lusaka, Zambia",
+    type: "Full-Time"
+  },
+  {
+    id: 2,
+    title: "Logistics Operations Manager",
+    department: "Shipping & Logistics",
+    location: "Lusaka, Zambia",
+    type: "Full-Time"
+  },
+  {
+    id: 3,
+    title: "Agronomist",
+    department: "Agribusiness",
+    location: "Field Operations",
+    type: "Contract"
   }
 ];

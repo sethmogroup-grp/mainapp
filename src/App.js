@@ -19,6 +19,7 @@ import Community from './pages/Community';
 import SectorDetail from './pages/SectorDetail';
 import Contact from './pages/Contact'; 
 import Careers from './pages/Careers'; 
+import Sustainability from './pages/Sustainability'; // <-- NEW IMPORT
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               {/* Support & Quick Links */}
               <Route path="/contact" element={<Contact />} />
               <Route path="/careers" element={<Careers />} />
+              <Route path="/sustainability" element={<Sustainability />} /> {/* <-- NEW ROUTE */}
             </Routes>
           </div>
           
