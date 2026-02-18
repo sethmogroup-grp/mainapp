@@ -1,159 +1,271 @@
-/* =========================================
-   HERO CONTAINER
-========================================= */
-
+/* ---------- HERO LAYOUT ---------- */
 .hero-container {
   position: relative;
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  justify-content: flex-end;
-  align-items: center;
-
   overflow: hidden;
-
-  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
   box-sizing: border-box;
 }
-
-
-/* =========================================
-   BACKGROUND MEDIA
-========================================= */
 
 .hero-video,
 .hero-image {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  /* Ken Burns effect */
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  transform-origin: center;
 }
 
-
-/* =========================================
-   CLEAN DARK OVERLAY (NO BLUE)
-========================================= */
-
+/* subtle dark overlay for contrast + optional animated gradient */
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  /* Neutral black gradient instead of blue */
+  inset: 0;
   background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.55)
+    120deg,
+    rgba(2, 20, 56, 0.4),
+    rgba(2, 20, 56, 0.7),
+    rgba(2, 20, 56, 0.4)
   );
-
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite;
   z-index: 1;
 }
 
-
-/* =========================================
-   CONTENT WRAPPER
-========================================= */
-
+/* center content stack */
 .hero-content {
   position: relative;
   z-index: 2;
-  text-align: center;
   width: 100%;
-  animation: fadeInUp 1.2s ease-out;
-}
-
-
-/* =========================================
-   BUTTONS
-========================================= */
-
-.hero-buttons {
+  max-width: 1200px;
   display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start; /* tile on left for desktop */
+  gap: 22px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
-.btn {
-  padding: 15px 40px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-
-  backdrop-filter: blur(5px);
+/* make tile stand out on mobile centered */
+@media (max-width: 880px) {
+  .hero-content {
+    align-items: center;
+    padding: 18px;
+  }
 }
 
-/* Primary Button */
-.btn-primary {
-  background-color: var(--color-orange);
-  color: white;
-  border: 2px solid var(--color-orange);
-}
-
-.btn-primary:hover {
-  background-color: transparent;
-  color: white;
-  border-color: white;
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 2px solid white;
-}
-
-.btn-secondary:hover {
-  background-color: white;
-  color: var(--color-deep-blue);
-}
-
-
-/* =========================================
-   SOCIAL ICONS
-========================================= */
-
-.social-icon {
-  width: 40px;
-  height: 40px;
-  background-color: #222;
+/* ---------- INFO TILE (blue gradient tile from screenshots) ---------- */
+.info-tile {
+  display: inline-block;
+  background: linear-gradient(135deg, #0b67b8 0%, #12a8d9 100%);
+  border-radius: 6px;
+  box-shadow: 0 12px 30px rgba(4, 22, 56, 0.45);
+  padding: 10px;
+  min-width: 320px;
+  max-width: 420px;
   color: #fff;
-  border-radius: 50%;
+  /* Entrance animation */
+  opacity: 0;
+  animation: tileFadeIn 0.7s ease forwards;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 35px rgba(4, 22, 56, 0.5);
+}
+
+.info-tile-inner {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* vertical left line element (thin) with soft pulse */
+.info-left-line {
+  width: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 2px;
+  margin-right: 18px;
+  height: 68px;
+  animation: softPulse 3s infinite;
+}
+
+/* text block */
+.info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* small top word */
+.info-sm {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+
+/* large LIVES word */
+.info-large {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  margin-top: -2px;
+}
+
+/* supporting lines */
+.info-sub {
+  font-size: 0.95rem;
+  opacity: 0.95;
+  margin-top: 6px;
+}
+.info-highlight {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* tile entrance */
+@keyframes tileFadeIn {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ---------- MINI ROTATING WORD TILE (small, under main tile) ---------- */
+.mini-word-row {
   display: flex;
   align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.2s;
+}
+
+/* small white tile */
+.mini-word-tile {
+  position: relative;
+  background: rgba(255, 255, 255, 0.98);
+  color: #0b2a4a;
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(2, 20, 56, 0.25);
+}
+
+/* smooth crossfade for rotating word */
+.mini-word-text {
+  display: inline-block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mini-word-text.exit {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.mini-word-text.enter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- CTA BUTTONS (SMALL TILE / PILL STYLE) ---------- */
+.hero-buttons.small {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.4s;
+}
+
+/* base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  cursor: pointer;
   text-decoration: none;
-
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
+  font-weight: 700;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
 }
 
-.social-icon:hover {
-  background-color: #d3121b;
-  transform: translateY(-3px);
-  border-color: #d3121b;
-  box-shadow: 0 5px 15px rgba(211, 18, 27, 0.4);
+/* small modifier */
+.btn-small {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
 }
 
+/* filled primary (compact) */
+.btn-primary {
+  background: #ffe9d1; /* warm accent background — change to brand color if needed */
+  color: #0b2a4a;
+  box-shadow: 0 6px 18px rgba(11, 42, 74, 0.18);
+  border: 1px solid rgba(11, 42, 74, 0.06);
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: #ffdec4;
+}
 
-/* =========================================
-   ANIMATION
-========================================= */
+/* subtle outline version */
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+}
+.btn-outline:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.05);
+}
 
-@keyframes fadeInUp {
+/* ---------- ANIMATIONS ---------- */
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -161,25 +273,43 @@
   }
 }
 
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 768px) {
-
-  .hero-container {
-    padding-bottom: 60px;
+@keyframes softPulse {
+  0% {
+    opacity: 0.9;
   }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
   }
+  100% {
+    opacity: 0.9;
+  }
+}
 
-  .btn {
-    width: 80%;
-    text-align: center;
+/* ---------- RESPONSIVE ADJUSTMENTS ---------- */
+@media (max-width: 880px) {
+  .info-tile {
+    min-width: 260px;
+    max-width: 92%;
+    padding: 10px;
+  }
+  .info-left-line {
+    height: 58px;
+    margin-right: 12px;
+  }
+  .info-large {
+    font-size: 1.6rem;
+  }
+  .info-sub,
+  .info-sm,
+  .info-highlight {
+    font-size: 0.95rem;
+  }
+  .mini-word-tile {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+  .hero-buttons.small {
+    gap: 10px;
   }
 }
