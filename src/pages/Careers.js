@@ -1,55 +1,77 @@
-import React, { useEffect } from 'react';
-import { openPositions } from '../data/content';
+import React, { useState, useEffect } from 'react';
+import { getCareers } from '../services/contentServices';
 import './Careers.css';
 
 const Careers = () => {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    const fetchJobs = async () => {
+      try {
+        const data = await getCareers();
+        setJobs(data.jobs || []);
+      } catch (err) {
+        console.error("Error fetching jobs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchJobs();
   }, []);
 
   return (
-    <div className="page-wrapper">
-      <header className="page-hero careers-hero">
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <h1>Join The <span className="text-highlight">Sethmo Family</span></h1>
-          <p>Innovate, grow, and build a rewarding career with a Pan-African market leader.</p>
+    <div className="careers-page">
+      {/* Premium Hero Section */}
+      <header className="careers-hero-modern">
+        <div className="container">
+          <span className="hero-eyebrow">Career Opportunities</span>
+          <h1>Shape the Future of <span className="highlight-red">Africa</span></h1>
+          <p>Join a multi-sector conglomerate driven by innovation and excellence.</p>
         </div>
       </header>
 
-      <main className="careers-content">
-        <div className="intro-text">
-          <h2>Open Positions</h2>
-          <div className="deco-line"></div>
-          <p>
-            We are always looking for driven, innovative, and passionate individuals to join our 
-            diverse sectors. If you are ready to be <strong>Inspired By You</strong>, explore our current openings below.
-          </p>
-        </div>
+      <section className="careers-listing-section">
+        <div className="container">
+          <div className="section-header-modern">
+            <h2>Current Openings</h2>
+            <div className="accent-bar"></div>
+          </div>
 
-        <div className="jobs-list">
-          {openPositions.length > 0 ? (
-            openPositions.map((job) => (
-              <div key={job.id} className="job-card">
-                <div className="job-info">
-                  <h3>{job.title}</h3>
-                  <div className="job-tags">
-                    <span className="tag dept-tag">{job.department}</span>
-                    <span className="tag loc-tag">📍 {job.location}</span>
-                    <span className="tag type-tag">⏱️ {job.type}</span>
+          <div className="jobs-container-modern">
+            {loading ? (
+              <div className="shimmer-loader">Loading opportunities...</div>
+            ) : jobs.length > 0 ? (
+              jobs.map((job) => (
+                <div key={job._id} className="job-card-modern">
+                  <div className="card-top">
+                    <span className="dept-tag">{job.department}</span>
+                    <span className="type-tag">{job.type}</span>
+                  </div>
+                  <div className="card-body">
+                    <h3>{job.title}</h3>
+                    <p className="job-loc">📍 {job.location}</p>
+                  </div>
+                  <div className="card-footer">
+                    <a 
+                      href={job.applyLink.startsWith('http') ? job.applyLink : `mailto:${job.applyLink}`} 
+                      className="btn-apply-modern"
+                    >
+                      Apply Now
+                    </a>
                   </div>
                 </div>
-                <button className="apply-btn">Apply Now</button>
+              ))
+            ) : (
+              <div className="empty-careers">
+                <h3>Currently, our team is full.</h3>
+                <p>But we're always scouting for talent. Drop your CV at <strong>careers@sethmogroup.com</strong></p>
               </div>
-            ))
-          ) : (
-            <div className="no-jobs">
-              <h3>No open positions at the moment.</h3>
-              <p>However, we are always looking for talent. Send your CV to <a href="mailto:careers@sethmogroup.com">careers@sethmogroup.com</a></p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 };

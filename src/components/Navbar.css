@@ -13,9 +13,8 @@
   border-radius: 30px;
 
   /* Glassmorphism */
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: white; /* solid */
+backdrop-filter: none;
   box-shadow: 0 8px 25px rgba(4, 64, 102, 0.25);
 
   display: flex;

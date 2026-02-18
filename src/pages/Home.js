@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { useLenis } from 'lenis/react'; 
+import { useLenis } from 'lenis/react';
 import './Home.css';
 
 // --- Components ---
@@ -12,18 +12,23 @@ import SevenPillarsDetails from '../components/SevenPillarsDetails';
 import ContactUs from '../components/ContactUs';
 
 const Home = () => {
-  // 1. Scope all DOM queries to this specific container to prevent grabbing elements from other pages
   const containerRef = useRef(null);
   const animatedSectionsRef = useRef([]);
 
-  // 2. INTERSECTION OBSERVER: Handles active states for z-index
+  /* =========================================
+     INTERSECTION OBSERVER
+  ========================================= */
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Safely query only inside the Home container
-    const allSections = Array.from(containerRef.current.querySelectorAll('.section-inner'));
+    const allSections = Array.from(
+      containerRef.current.querySelectorAll('.section-inner')
+    );
+
     animatedSectionsRef.current = Array.from(
-      containerRef.current.querySelectorAll('.section-inner:not(.section-auto)')
+      containerRef.current.querySelectorAll(
+        '.section-inner:not(.section-auto)'
+      )
     );
 
     const observer = new IntersectionObserver(
@@ -44,9 +49,21 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
-  // 3. SCROLL MATH: Wrapped in useCallback for memory optimization
+  /* =========================================
+     SCROLL ANIMATION (BLUR SAFE)
+  ========================================= */
   const handleScroll = useCallback(() => {
     if (!animatedSectionsRef.current.length) return;
+
+    // 🚀 Disable animation during route change
+    if (document.body.classList.contains('no-scroll-animation')) {
+      animatedSectionsRef.current.forEach((section) => {
+        section.style.transform = 'none';
+        section.style.opacity = '1';
+        section.style.filter = 'none';
+      });
+      return;
+    }
 
     const viewportHeight = window.innerHeight;
     const viewportCenter = viewportHeight / 2;
@@ -55,31 +72,39 @@ const Home = () => {
       const rect = section.getBoundingClientRect();
       const sectionCenter = rect.top + rect.height / 2;
 
-      // Calculate distance from center (normalized)
-      const distance = Math.abs(sectionCenter - viewportCenter) / (viewportHeight / 1.5);
+      const distance =
+        Math.abs(sectionCenter - viewportCenter) /
+        (viewportHeight / 1.5);
+
       const safeDist = Math.min(distance, 1);
 
-      // Animation calculations
-      const scale = 1; 
-      const opacity = 1 - safeDist * 0.25;    
-      const blur = safeDist * 1.5;            
-      const translateY = (sectionCenter - viewportCenter) * 0.04;    
+      const scale = 1;
+      const opacity = 1 - safeDist * 0.25;
+      const blur = safeDist * 1.5;
+      const translateY =
+        (sectionCenter - viewportCenter) * 0.04;
 
-      // Direct DOM mutation for 60fps performance
-      section.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+      section.style.transform =
+        `scale(${scale}) translateY(${translateY}px)`;
       section.style.opacity = `${opacity}`;
       section.style.filter = `blur(${blur}px)`;
     });
   }, []);
 
-  // 4. LENIS HOOK: Automatically hooks into the native smooth scroll loop
+  /* =========================================
+     LENIS INTEGRATION
+  ========================================= */
   useLenis(handleScroll);
 
-  // Fallback for native scrolling (initial load or if Lenis is inactive)
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Trigger once on mount to set initial positions
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
+
+    handleScroll();
+
+    return () =>
+      window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
   return (
@@ -99,8 +124,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. Vision ---> THE FIX: Changed to auto-height so mobile text fits perfectly <--- */}
-      <section className="snap-section snap-auto" style={{ height: 'auto', minHeight: '100vh' }}>
+      {/* 3. Vision */}
+      <section className="snap-section snap-auto">
         <div className="section-inner section-auto vision-section">
           <Vision />
         </div>
@@ -114,21 +139,21 @@ const Home = () => {
       </section>
 
       {/* 5. Seven Pillars Banner */}
-      <section className="snap-section">
-        <div className="section-inner pillars-section">
+      <section className="snap-section snap-auto">
+        <div className="section-inner section-auto pillars-section">
           <SevenPillars />
         </div>
       </section>
 
-      {/* 6. Seven Pillars Details (Normal Scroll) */}
-      <section className="snap-section snap-auto" style={{ height: 'auto', minHeight: '100vh' }}>
+      {/* 6. Seven Pillars Details */}
+      <section className="snap-section snap-auto">
         <div className="section-inner section-auto pillars-details-wrapper">
           <SevenPillarsDetails />
         </div>
       </section>
 
-      {/* 7. Contact Us (Normal Scroll) */}
-      <section className="snap-section snap-auto" style={{ height: 'auto', minHeight: '600px' }}>
+      {/* 7. Contact */}
+      <section className="snap-section snap-auto">
         <div className="section-inner section-auto contact-section-wrapper">
           <ContactUs />
         </div>

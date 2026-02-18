@@ -1,12 +1,28 @@
-import React, { useEffect } from 'react';
-import { sustainabilityFocus } from '../data/content';
+import React, { useState, useEffect } from 'react';
+import { getSustainability } from '../services/contentServices'; // Ensure this service exists
 import './Sustainability.css';
 
 const Sustainability = () => {
-  // Always scroll to top when page loads
+  const [focusAreas, setFocusAreas] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    const fetchContent = async () => {
+      try {
+        const data = await getSustainability();
+        // The backend returns an object with focusAreas array
+        setFocusAreas(data.focusAreas || []);
+      } catch (err) {
+        console.error('Error fetching sustainability data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchContent();
   }, []);
+
+  if (loading) return <div className="loading-state">Loading...</div>;
 
   return (
     <div className="page-wrapper">
@@ -31,9 +47,9 @@ const Sustainability = () => {
           </p>
         </div>
 
-        {/* Focus Areas Grid */}
+        {/* Dynamic Focus Areas Grid */}
         <div className="focus-grid">
-          {sustainabilityFocus.map((item) => (
+          {focusAreas.map((item) => (
             <div key={item.id} className="focus-card">
               <div className="focus-icon">{item.icon}</div>
               <h3>{item.title}</h3>

@@ -1,34 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getHeroSettings } from '../services/heroService';
 import './Hero.css';
 
-// Import the video
-import heroVideo from '../assets/hero/1.mp4';
-
 const Hero = () => {
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getHeroSettings()
+      .then(data => {
+        setSettings(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div className="hero-loading">Loading hero...</div>;
+  if (error) return <div className="hero-error">Error: {error}</div>;
+  if (!settings) return null;
+
+  const {
+    mediaType,
+    videoUrl,
+    imageUrl,
+    button1Text,
+    button1Link,
+    button2Text,
+    button2Link
+  } = settings;
+
   return (
     <div className="hero-container">
-      
-      {/* 1. The Video Background */}
-      <video className="hero-video" autoPlay loop muted playsInline>
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+      {mediaType === 'video' ? (
+        <video className="hero-video" autoPlay loop muted playsInline>
+          <source src={videoUrl} type="video/mp4" />
+        </video>
+      ) : (
+        <img src={imageUrl} alt="Hero" className="hero-image" />
+      )}
 
-      {/* 2. Dark Overlay (Kept lighter to see video better) */}
-      <div className="hero-overlay"></div>
+      {/* Overlay removed completely */}
       
-      {/* 3. The Content (Just Buttons now) */}
       <div className="hero-content">
         <div className="hero-buttons">
-          <Link to="/services" className="btn btn-primary">
-            Explore Our Sectors
+          <Link to={button1Link} className="btn btn-primary">
+            {button1Text}
           </Link>
-          <Link to="/contact" className="btn btn-secondary">
-            Partner With Us
+          <Link to={button2Link} className="btn btn-secondary">
+            {button2Text}
           </Link>
         </div>
       </div>
-
     </div>
   );
 };

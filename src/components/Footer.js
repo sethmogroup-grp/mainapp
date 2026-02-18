@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Youtube, Twitter } from 'lucide-react'; // Import Icons
 import './Footer.css';
-import icon from '../assets/icon.png'; // Using your icon
+import icon from '../assets/icon.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,11 +24,53 @@ const Footer = () => {
             innovation, and community impact. Driven by excellence, we remain 
             proudly <strong>Inspired By You</strong>.
           </p>
+          
+          {/* UPDATED SOCIAL LINKS SECTION */}
           <div className="social-links">
-            <a href="#" aria-label="Facebook" className="social-icon">FB</a>
-            <a href="#" aria-label="Twitter" className="social-icon">TW</a>
-            <a href="#" aria-label="LinkedIn" className="social-icon">LI</a>
-            <a href="#" aria-label="Instagram" className="social-icon">IG</a>
+            {/* Facebook */}
+            <a 
+              href="https://www.facebook.com/share/1DJHvBsWiu/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Facebook" 
+              className="social-icon"
+            >
+              <Facebook size={18} />
+            </a>
+
+            {/* X (Formerly Twitter) */}
+            <a 
+              href="https://x.com/SethmoGroup" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="X (Twitter)" 
+              className="social-icon"
+            >
+              {/* Note: Lucide 'Twitter' icon is the bird. For X specific, an SVG is often better, but this maintains style consistency */}
+              <Twitter size={18} /> 
+            </a>
+
+            {/* Instagram */}
+            <a 
+              href="https://www.instagram.com/sethmogroup?igsh=dmUxcHZ1Z200dXIy" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Instagram" 
+              className="social-icon"
+            >
+              <Instagram size={18} />
+            </a>
+
+            {/* YouTube */}
+            <a 
+              href="https://www.youtube.com/@SethmoGroup" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="YouTube" 
+              className="social-icon"
+            >
+              <Youtube size={18} />
+            </a>
           </div>
         </div>
 

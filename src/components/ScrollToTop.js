@@ -4,31 +4,39 @@ import { useLenis } from 'lenis/react';
 
 export default function ScrollToTop() {
   const location = useLocation();
-  const lenis = useLenis(); // Automatically grabs the Lenis instance
+  const lenis = useLenis();
 
   useEffect(() => {
-    // Wait until Lenis is fully initialized
     if (!lenis) return;
 
-    // Handle Hash Links (e.g., /#about)
+    // 🔥 Temporarily disable scroll animations
+    document.body.classList.add('no-scroll-animation');
+
     if (location.hash) {
       const id = location.hash.replace('#', '');
-      
-      // A tiny timeout ensures the DOM has painted before trying to find the ID
+
       const timer = setTimeout(() => {
         const element = document.getElementById(id);
         if (element) {
           lenis.scrollTo(element, { offset: -80, duration: 1.0 });
         }
-      }, 150);
+      }, 100);
 
       return () => clearTimeout(timer);
-    } 
-    // Handle Standard Page Changes
-    else {
+    } else {
       lenis.scrollTo(0, { immediate: true });
     }
+
   }, [location, lenis]);
+
+  // Remove class after small delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.body.classList.remove('no-scroll-animation');
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [location]);
 
   return null;
 }
