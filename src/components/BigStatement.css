@@ -1,64 +1,146 @@
-/* === Global / CSS Variables === */
+/* === Global Variables === */
 :root {
-  --color-gold: #ffb347;
-  --color-orange: #ff8c42;
-  --color-deep-blue: #044066;
+  --stmt-bg: #d3121b; /* Sethmo Red for the content area */
+  --stmt-accent: #ffcc00; /* Sethmo Yellow */
+  --stmt-text: #ffffff; /* White text */
 }
 
-/* === Container === */
-.big-statement {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* ---> FIX: Forces the blue background to fill the screen to create a section break <--- */
-  background-color: var(--color-deep-blue);
+/* =========================================
+   Container for the whole section
+========================================= */
+.statement-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  font-family: sans-serif;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; 
+  border-bottom: 4px solid #ffffff; 
 }
 
-/* === Image Styling === */
-.responsive-bg {
+/* =========================================
+   LEFT SIDE: Image Area (Pattern is BEHIND)
+========================================= */
+.statement-image-col {
   width: 100%;
-  height: 100%; /* ---> FIX: Forces the image to fit safely inside the 100vh box without cropping <--- */
+  min-height: 350px; 
+  position: relative;
+  overflow: hidden;
+  
+  /* The pattern is set as the background of this column */
+  background-color: #ffffff;
+  background-image: var(--pattern-bg);
+  background-size: cover;
+  background-position: center;
+}
+
+.statement-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  object-fit: contain;
   will-change: transform;
   animation: slowZoom 20s infinite alternate;
+  
+  /* Opacity removed so the woman stays 100% solid! */
 }
 
 @keyframes slowZoom {
   0% { transform: scale(1); }
-  100% { transform: scale(1.02); }
+  100% { transform: scale(1.05); }
 }
 
-/* === Decorative accent line (bottom right) === */
-.accent-line {
-  position: absolute;
-  bottom: 40px;
-  right: 8%;
-  width: 120px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-gold), var(--color-orange));
-  z-index: 6;
-  border-radius: 2px;
+/* =========================================
+   RIGHT SIDE: Solid Red Background Area
+========================================= */
+.statement-content-right {
+  width: 100%;
+  background-color: var(--stmt-bg); 
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
 }
 
-/* === Responsive: Tablet & Mobile === */
-@media (max-width: 1024px) {
-  .responsive-bg {
-    animation: none; /* Smoother performance on mobile */
+/* Desktop layout: Heading Left, Text Right */
+.statement-inner-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.statement-heading-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.statement-deco-line {
+  width: 80px;
+  height: 5px;
+  background-color: var(--stmt-accent); 
+  margin-bottom: 1.5rem;
+}
+
+.statement-label {
+  color: var(--stmt-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.statement-title {
+  color: var(--stmt-accent);
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 800;
+  margin: 0;
+}
+
+.statement-text-col {
+  flex: 2; 
+  color: var(--stmt-text);
+}
+
+.statement-paragraph {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* =========================================
+   DESKTOP MEDIA QUERY (min-width: 992px)
+========================================= */
+@media (min-width: 992px) {
+  .statement-container {
+    flex-direction: row; 
+    min-height: 600px;
+    height: 100vh;
   }
 
-  .accent-line {
-    right: 5%;
-    bottom: 30px;
-    width: 80px;
+  .statement-image-col {
+    width: 35%; /* Image area takes 35% */
+    min-height: 100%;
   }
-}
 
-@media (max-width: 768px) {
-  .accent-line {
-    display: none; /* Hidden on mobile to keep the layout clean */
+  .statement-content-right {
+    width: 65%; /* Content area takes 65% */
+    padding: 4rem 5rem;
+  }
+
+  .statement-inner-row {
+    flex-direction: row; 
+    gap: 4rem;
   }
 }

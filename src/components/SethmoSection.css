@@ -1,156 +1,245 @@
 /* =========================================
-   Container
+   Main Container
 ========================================= */
+.businesses-section {
+  width: 100%;
+  padding: 5rem 5%;
+  background-color: #ffffff;
+  font-family: 'Times New Roman', Times, serif; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-.sethmo-section {
+/* =========================================
+   Header Area
+========================================= */
+.businesses-header {
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 3rem;
+}
+
+.businesses-title {
+  color: #0b132b; 
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.businesses-subtitle {
+  color: #444;
+  font-family: sans-serif; 
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* =========================================
+   Logos as Tabs (Top Filter)
+========================================= */
+.businesses-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  overflow-x: auto; 
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.businesses-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 10px 15px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  min-width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+  opacity: 1;
+  border-bottom-color: #0b132b; 
+}
+
+.tab-logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+.tab-text-all {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #0b132b;
+}
+
+/* =========================================
+   Business Grid (3 Columns, Compact)
+========================================= */
+.businesses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem; /* Tighter gap */
+  width: 100%;
+  max-width: 1100px; /* Slimmer max width */
+}
+
+/* =========================================
+   Business Card (The Tiles)
+========================================= */
+.business-card {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+}
+
+.business-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.business-card-img-wrapper {
+  width: 100%;
+  height: 170px; /* Reduced image height */
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.business-card-img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
 
-  /* Background */
-  background-color: #1a1a1a;
+.business-card:hover .business-card-img {
+  transform: scale(1.05); 
+}
 
-  background-image: 
-    linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(20, 20, 20, 0.95) 100%),
-    var(--pattern-bg);
-
-  background-size: cover, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
-  background-blend-mode: multiply;
-
+/* Centered content for Logo and Title */
+.business-card-content {
+  padding: 1.2rem 1rem; /* Tighter padding */
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  position: relative;
-  font-family: sans-serif;
-
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-
-/* =========================================
-   Main Center Image Area
-========================================= */
-
-.sethmo-main-display {
   flex-grow: 1;
+  background: #ffffff;
+}
+
+/* Logo inside the tile */
+.business-card-logo-wrapper {
+  height: 40px; /* Slightly smaller logo area */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-height: 60%;
-  z-index: 2;
+  margin-bottom: 0.6rem;
 }
 
-.sethmo-logo-img {
-  max-width: 90%;
+.business-card-logo {
   max-height: 100%;
+  max-width: 80%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
 }
 
+.business-card-title {
+  color: #0b132b;
+  font-size: 1.15rem; /* Adjusted title size */
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
 
 /* =========================================
-   Navigation Arrows
+   See All Button Area (Link)
 ========================================= */
-
-.sethmo-controls {
+.see-all-container {
+  margin-top: 4rem;
   display: flex;
-  gap: 3rem;
-  margin: 1rem 0 2rem 0;
-  z-index: 2;
+  justify-content: center;
 }
 
-.arrow-btn {
-  background: none;
-  border: none;
+.see-all-link-wrapper {
+  display: flex;
+  align-items: stretch;
+  text-decoration: none; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.see-all-link-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.see-all-btn {
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-right: none; 
+  padding: 0 2rem;
+  font-size: 0.9rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  color: #333;
   cursor: pointer;
-  color: #555;
-  transition: all 0.3s ease;
-  padding: 10px;
+  letter-spacing: 1px;
 }
 
-.arrow-btn:hover,
-.arrow-btn.active {
+.see-all-icon {
+  background: #0b132b;
   color: #fff;
-  transform: scale(1.1);
-}
-
-
-/* =========================================
-   Bottom Logo Strip
-========================================= */
-
-.sethmo-logo-strip {
-  width: 100%;
-  padding: 20px 40px;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-
-  /* Updated color */
-  background: #ff3b30;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-
-  z-index: 10;
-}
-
-.subsidiary-logo-wrapper {
-  height: 50px;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
-
-  padding: 6px 10px;
-  border-radius: 6px;
-
-  /* subtle optional backing for better visibility */
-  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
 }
-
-.subsidiary-logo {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-
-  /* Keep original logo colors */
-  opacity: 0.95;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  filter: none;
-}
-
-.subsidiary-logo-wrapper:hover .subsidiary-logo {
-  opacity: 1;
-  transform: scale(1.1);
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
-}
-
 
 /* =========================================
-   Mobile
+   Responsive Adjustments
 ========================================= */
+@media (max-width: 992px) {
+  .businesses-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
 
 @media (max-width: 768px) {
-
-  .sethmo-logo-strip {
-    gap: 20px;
-    padding: 20px 10px;
+  .businesses-title {
+    font-size: 2.2rem;
+  }
+  
+  .businesses-tabs {
+    justify-content: flex-start;
   }
 
-  .subsidiary-logo-wrapper {
-    height: 35px;
+  .businesses-grid {
+    grid-template-columns: 1fr; 
   }
 
-  .sethmo-controls {
-    gap: 2rem;
+  .businesses-section {
+    padding: 3rem 1rem;
   }
 }

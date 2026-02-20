@@ -55,7 +55,6 @@ const Home = () => {
   const handleScroll = useCallback(() => {
     if (!animatedSectionsRef.current.length) return;
 
-    // 🚀 Disable animation during route change
     if (document.body.classList.contains('no-scroll-animation')) {
       animatedSectionsRef.current.forEach((section) => {
         section.style.transform = 'none';
@@ -118,8 +117,8 @@ const Home = () => {
       </section>
 
       {/* 2. Big Statement */}
-      <section className="snap-section">
-        <div className="section-inner statement-section">
+      <section className="snap-section snap-auto">
+        <div className="section-inner section-auto statement-section">
           <BigStatement />
         </div>
       </section>
@@ -131,9 +130,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 4. Sethmo Showcase */}
-      <section className="snap-section">
-        <div className="section-inner sethmo-section-wrapper">
+      {/* 4. Sethmo Showcase (FIXED: Added snap-auto & section-auto) */}
+      <section className="snap-section snap-auto">
+        <div className="section-inner section-auto sethmo-section-wrapper">
           <SethmoSection />
         </div>
       </section>
