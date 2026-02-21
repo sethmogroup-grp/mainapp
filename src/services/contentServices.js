@@ -1,4 +1,18 @@
+/* eslint-disable no-undef */
 const API_URL = process.env.REACT_APP_API_URL || 'https://sethmoserver.onrender.com';
+
+// Helper function to extract error messages safely
+const handleFetchError = async (res) => {
+  let errorMessage = `Server error: ${res.status} ${res.statusText}`;
+  const text = await res.text(); 
+  try {
+    const errorData = JSON.parse(text);
+    errorMessage = errorData.message || errorData.error || errorMessage;
+  } catch (e) {
+    if (text) errorMessage = text.substring(0, 150);
+  }
+  throw new Error(errorMessage);
+};
 
 // ---------- Hero ----------
 export const getHeroSettings = async () => {
@@ -175,5 +189,33 @@ export const saveSettings = async (data) => {
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error('Failed to save system settings');
+  return res.json();
+};
+
+// ---------- Home Businesses ----------
+export const getHomeBusinessData = async () => {
+  const res = await fetch(`${API_URL}/api/home-business`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveHomeBusinessData = async (data) => {
+  const res = await fetch(`${API_URL}/api/home-business`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadHomeBusinessFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/api/home-business/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
   return res.json();
 };
