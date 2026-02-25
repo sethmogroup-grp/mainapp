@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
 import './ContactUs.css';
 
 const ContactUs = () => {
+  const navigate = useNavigate(); // 2. Initialize the navigate function
+
   return (
     <section className="contact-section">
       <div className="contact-container">
@@ -44,8 +47,9 @@ const ContactUs = () => {
             We are eager to hear from you about our brands. Any complaints, comments and compliments help us make our products better. Your satisfaction is our goal.
           </p>
           
-          <button className="contact-btn">
-            READ MORE
+          {/* 3. Add onClick to trigger navigation and update text */}
+          <button className="contact-btn" onClick={() => navigate('/contact')}>
+            SEND EMAIL
           </button>
         </div>
 
