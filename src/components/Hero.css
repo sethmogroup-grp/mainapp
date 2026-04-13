@@ -312,4 +312,19 @@
   .hero-buttons.small {
     gap: 10px;
   }
+ .dmca-link {
+  text-decoration: none;
+  color:#002bac;
+  transition: color 0.3s ease;
+}
+
+.dmca-link:hover {
+  color: #002bac; /* Add your brand color */
+}
+
+/* Optional: Add a small badge icon */
+.dmca-link::before {
+  content: '🔒 ';
+  margin-right: 4px;
+}
 }

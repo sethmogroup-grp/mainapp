@@ -1,108 +1,92 @@
-/* Main Footer Container */
+/* =========================
+   FOOTER BASE
+========================= */
 .main-footer {
-  width: 100%;
-  background-color: #111; /* Deep Black/Grey */
-  color: #b0b0b0; /* Soft Grey Text */
-  font-family: sans-serif;
-  font-size: 0.95rem;
-  border-top: 4px solid #d3121b; /* Red accent top border */
+  background: #021438;
+  color: #ffffff;
+  padding-top: 60px;
+  font-family: inherit;
 }
 
-/* Grid Layout for Columns */
+/* =========================
+   TOP SECTION
+========================= */
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Mobile: 1 col */
-  gap: 3rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 40px 40px;
+  box-sizing: border-box;
 }
 
-/* Individual Column Styles */
-.footer-col {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Logo Area */
+/* =========================
+   BRAND COLUMN
+========================= */
 .footer-logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 14px;
 }
 
 .footer-logo-img {
-  height: 40px;
-  width: auto;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
 }
 
 .footer-logo-text {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.5px;
 }
 
 .text-highlight {
-  color: #ffcc00; /* Yellow accent */
+  color: #12a8d9;
 }
 
 .footer-desc {
+  font-size: 0.92rem;
   line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 300px;
+  opacity: 0.9;
+  margin-bottom: 18px;
 }
 
-/* Social Icons */
+/* =========================
+   SOCIAL LINKS
+========================= */
 .social-links {
   display: flex;
-  gap: 1rem;
+  gap: 12px;
 }
 
 .social-icon {
-  width: 40px;
-  height: 40px;
-  background-color: #222;
-  color: #fff;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: bold;
+  color: #fff;
   transition: all 0.3s ease;
 }
 
 .social-icon:hover {
-  background-color: #d3121b; /* Red on hover */
+  background: #12a8d9;
   transform: translateY(-3px);
 }
 
-/* Headings */
+/* =========================
+   COLUMNS
+========================= */
 .footer-heading {
-  color: #fff;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-  position: relative;
-  display: inline-block;
+  font-size: 1rem;
+  margin-bottom: 14px;
+  font-weight: 700;
 }
 
-/* Decorative line under headings */
-.footer-heading::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 40px;
-  height: 2px;
-  background-color: #d3121b;
-}
-
-/* Links Lists */
 .footer-links-list {
   list-style: none;
   padding: 0;
@@ -110,87 +94,142 @@
 }
 
 .footer-links-list li {
-  margin-bottom: 0.8rem;
+  margin-bottom: 8px;
 }
 
 .footer-links-list a {
-  color: #b0b0b0;
   text-decoration: none;
-  transition: color 0.3s;
-  display: inline-block;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
 }
 
 .footer-links-list a:hover {
-  color: #ffcc00; /* Yellow on hover */
-  transform: translateX(5px); /* Slide effect */
+  color: #12a8d9;
 }
 
-/* Contact Info */
+/* =========================
+   CONTACT
+========================= */
 .contact-row {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  line-height: 1.5;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
 .contact-icon {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
-/* Bottom Bar */
+.contact-row p {
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.4;
+  color: #d1d5db;
+}
+
+/* =========================
+   BOTTOM BAR
+========================= */
 .footer-bottom {
-  background-color: #0a0a0a; /* Slightly darker */
-  padding: 1.5rem 2rem;
-  border-top: 1px solid #222;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 40px;
 }
 
 .footer-bottom-inner {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  text-align: center;
-  font-size: 0.85rem;
+  flex-wrap: wrap;
 }
 
+/* =========================
+   LEGAL LINKS
+========================= */
 .legal-links {
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .legal-links a {
-  color: #888;
   text-decoration: none;
-  transition: color 0.3s;
+  color: #d1d5db;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
 }
 
 .legal-links a:hover {
-  color: #fff;
+  color: #12a8d9;
 }
 
 .separator {
-  color: #444;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-/* Tablet & Desktop Responsive */
-@media (min-width: 768px) {
+/* =========================
+   DMCA BADGE (🔥 NEW)
+========================= */
+.dmca-badge-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.dmca-badge img {
+  height: 20px;
+  width: auto;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+  filter: grayscale(10%);
+}
+
+/* Hover glow effect */
+.dmca-badge img:hover {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.05);
+  filter: grayscale(0%);
+  box-shadow: 0 4px 12px rgba(18, 168, 217, 0.35);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1000px) {
   .footer-content {
-    grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cols */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 992px) {
+@media (max-width: 600px) {
   .footer-content {
-    grid-template-columns: 2fr 1fr 1fr 1.5fr; /* Desktop: 4 cols varied width */
+    grid-template-columns: 1fr;
+    padding: 0 20px 30px;
   }
-  
+
+  .footer-bottom {
+    padding: 16px 20px;
+  }
+
   .footer-bottom-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .legal-links {
+    gap: 8px;
+  }
+
+  .dmca-badge-wrapper {
+    margin-top: 6px;
+  }
+
+  .dmca-badge img {
+    height: 18px;
   }
 }

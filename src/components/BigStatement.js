@@ -14,7 +14,6 @@ const BigStatement = () => {
 
   return (
     <section className="statement-container">
-      
       {/* LEFT SIDE: Image Area (Pattern applied here) */}
       <div className="statement-image-col" style={leftSideStyle}>
         <picture>
