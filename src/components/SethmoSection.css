@@ -1,18 +1,19 @@
 /* =========================================
-   Main Container
+   MAIN CONTAINER
 ========================================= */
 .businesses-section {
   width: 100%;
   padding: 5rem 5%;
   background-color: #ffffff;
-  font-family: 'Times New Roman', Times, serif; 
+  font-family: 'Times New Roman', Times, serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 /* =========================================
-   Header Area
+   HEADER AREA
 ========================================= */
 .businesses-header {
   text-align: center;
@@ -21,21 +22,22 @@
 }
 
 .businesses-title {
-  color: #0b132b; 
+  color: #0b132b;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
 }
 
 .businesses-subtitle {
-  color: #444;
-  font-family: sans-serif; 
+  color: #444444;
+  font-family: sans-serif;
   font-size: 1rem;
   line-height: 1.6;
+  margin: 0;
 }
 
 /* =========================================
-   Logos as Tabs (Top Filter)
+   LOGOS AS TABS
 ========================================= */
 .businesses-tabs {
   display: flex;
@@ -44,9 +46,11 @@
   gap: 1.5rem;
   margin-bottom: 3rem;
   width: 100%;
-  overflow-x: auto; 
+  overflow-x: auto;
+  overflow-y: hidden;
   padding-bottom: 10px;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
 .businesses-tabs::-webkit-scrollbar {
@@ -59,97 +63,106 @@
   border-bottom: 3px solid transparent;
   padding: 10px 15px;
   cursor: pointer;
-  opacity: 0.5;
-  transition: all 0.3s ease;
+  opacity: 0.55;
   min-width: max-content;
+  min-height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.2s ease, border-bottom-color 0.2s ease;
 }
 
 .tab-btn:hover,
 .tab-btn.active {
   opacity: 1;
-  border-bottom-color: #0b132b; 
+  border-bottom-color: #0b132b;
 }
 
 .tab-logo {
   height: 45px;
   width: auto;
+  max-width: 130px;
   object-fit: contain;
+  display: block;
 }
 
 .tab-text-all {
   font-family: sans-serif;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.1rem;
   color: #0b132b;
 }
 
 /* =========================================
-   Business Grid (3 Columns, Compact)
+   BUSINESS GRID
 ========================================= */
 .businesses-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 1.5rem; /* Tighter gap */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
   width: 100%;
-  max-width: 1100px; /* Slimmer max width */
+  max-width: 1100px;
+  align-items: stretch;
 }
 
 /* =========================================
-   Business Card (The Tiles)
+   BUSINESS CARD
 ========================================= */
 .business-card {
+  position: relative;
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   border: 1px solid #eaeaea;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  height: 100%; 
+  min-height: 280px;
+  transition: box-shadow 0.2s ease;
 }
 
+/* 
+   No translateY here.
+   This prevents the skip/jump feeling when using Lenis.
+*/
 .business-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .business-card-img-wrapper {
   width: 100%;
-  height: 170px; /* Reduced image height */
+  height: 170px;
   overflow: hidden;
   flex-shrink: 0;
+  position: relative;
+  background-color: #f5f5f5;
 }
 
 .business-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  display: block;
 }
 
-.business-card:hover .business-card-img {
-  transform: scale(1.05); 
-}
-
-/* Centered content for Logo and Title */
+/* =========================================
+   CARD CONTENT
+========================================= */
 .business-card-content {
-  padding: 1.2rem 1rem; /* Tighter padding */
+  padding: 1.2rem 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
   flex-grow: 1;
-  background: #ffffff;
 }
 
-/* Logo inside the tile */
 .business-card-logo-wrapper {
-  height: 40px; /* Slightly smaller logo area */
+  height: 42px;
+  min-height: 42px;
+  max-height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,21 +170,22 @@
 }
 
 .business-card-logo {
-  max-height: 100%;
+  max-height: 40px;
   max-width: 80%;
   object-fit: contain;
+  display: block;
 }
 
 .business-card-title {
   color: #0b132b;
-  font-size: 1.15rem; /* Adjusted title size */
+  font-size: 1.15rem;
   font-weight: 700;
   margin: 0;
   font-family: 'Times New Roman', Times, serif;
 }
 
 /* =========================================
-   See All Button Area (Link)
+   SEE ALL BUTTON
 ========================================= */
 .see-all-container {
   margin-top: 4rem;
@@ -182,64 +196,89 @@
 .see-all-link-wrapper {
   display: flex;
   align-items: stretch;
-  text-decoration: none; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   overflow: hidden;
-  transition: transform 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 
 .see-all-link-wrapper:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.16);
 }
 
 .see-all-btn {
   background: #ffffff;
-  border: 1px solid #eee;
-  border-right: none; 
-  padding: 0 2rem;
+  border: 1px solid #eeeeee;
+  border-right: none;
+  padding: 15px 2rem;
   font-size: 0.9rem;
   font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
-  color: #333;
+  font-weight: 700;
+  color: #333333;
   cursor: pointer;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
 }
 
 .see-all-icon {
   background: #0b132b;
-  color: #fff;
+  color: #ffffff;
   padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
 /* =========================================
-   Responsive Adjustments
+   DISABLE ANIMATIONS TEMPORARILY
+   Used by ScrollToTop.jsx
+========================================= */
+.no-scroll-animation .business-card,
+.no-scroll-animation .business-card-img,
+.no-scroll-animation .see-all-link-wrapper,
+.no-scroll-animation .tab-btn {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* =========================================
+   RESPONSIVE
 ========================================= */
 @media (max-width: 992px) {
   .businesses-grid {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 768px) {
+  .businesses-section {
+    padding: 3rem 1rem;
+  }
+
   .businesses-title {
     font-size: 2.2rem;
   }
-  
+
   .businesses-tabs {
     justify-content: flex-start;
   }
 
   .businesses-grid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
+}
 
-  .businesses-section {
-    padding: 3rem 1rem;
+/* =========================================
+   REDUCED MOTION
+========================================= */
+@media (prefers-reduced-motion: reduce) {
+  .business-card,
+  .business-card-img,
+  .see-all-link-wrapper,
+  .tab-btn {
+    transition: none !important;
+    animation: none !important;
   }
 }
