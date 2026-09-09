@@ -19,7 +19,8 @@ const Contact = () => {
     setStatus({ type: '', text: '' }); // Clear old messages
 
     try {
-      const response = await fetch('https://sethmoserver.onrender.com/api/messages', {
+      const API_URL = process.env.REACT_APP_API_URL || 'https://sethmogroup-backend.onrender.com';
+      const response = await fetch(`${API_URL}/api/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

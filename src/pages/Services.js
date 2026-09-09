@@ -14,7 +14,8 @@ const Services = () => {
   useEffect(() => {
     const fetchExpertise = async () => {
       try {
-        const response = await fetch('https://sethmoserver.onrender.com/api/expertise');
+        const API_URL = process.env.REACT_APP_API_URL || 'https://sethmogroup-backend.onrender.com';
+        const response = await fetch(`${API_URL}/api/expertise`);
         const data = await response.json();
         
         if (data) {

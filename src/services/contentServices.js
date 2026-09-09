@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const API_URL = process.env.REACT_APP_API_URL || 'https://sethmoserver.onrender.com';
+const API_URL = process.env.REACT_APP_API_URL || 'https://sethmogroup-backend.onrender.com';
 
 // Helper function to extract error messages safely
 const handleFetchError = async (res) => {

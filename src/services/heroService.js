@@ -1,7 +1,7 @@
 // src/services/heroService.js
 
 // Ensure this points to your deployed server or localhost
-const API_URL = process.env.REACT_APP_API_URL || 'https://sethmoserver.onrender.com';
+const API_URL = process.env.REACT_APP_API_URL || 'https://sethmogroup-backend.onrender.com';
 
 export const getHeroSettings = async () => {
   // 🔴 WAS: fetch(`${API_URL}/hero`);
