@@ -382,6 +382,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [showTerms, setShowTerms] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
+
+  // DMCA badge helper script (a <script> tag inside JSX won't execute, so load it here)
+  useEffect(() => {
+    const SRC = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js';
+    if (document.querySelector(`script[src="${SRC}"]`)) return;
+    const script = document.createElement('script');
+    script.src = SRC;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
   const data = useSectionData(getFooterSettings, FOOTER_DEFAULTS);
   const D = FOOTER_DEFAULTS;
 
@@ -480,18 +490,14 @@ const Footer = () => {
               Terms Of Service
             </button>
             <a
-              className="ft-dmca"
-              href="//www.dmca.com"
+              href="//www.dmca.com/Protection/Status.aspx?ID=1c43f7eb-6182-4270-a115-39575a197235"
               title="DMCA.com Protection Status"
-              target="_blank"
-              rel="noopener noreferrer"
+              className="dmca-badge"
             >
-            <img
-            src="https://dmca.com"
-            alt="DMCA.com Protection Status"
-            />
-              <span>DMCA</span>
-              <span>PROTECTED</span>
+              <img
+                src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=1c43f7eb-6182-4270-a115-39575a197235"
+                alt="DMCA.com Protection Status"
+              />
             </a>
           </div>
         </div>
