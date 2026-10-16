@@ -4,12 +4,16 @@ import './Home.css';
 
 // --- Components ---
 import Hero from '../components/Hero';
-import BigStatement from '../components/BigStatement';
-import Vision from '../components/Vision';
-import SethmoSection from '../components/SethmoSection';
-import SevenPillars from '../components/SevenPillars';
-import SevenPillarsDetails from '../components/SevenPillarsDetails';
-import ContactUs from '../components/ContactUs';
+import PromisesSection from '../components/PromisesSection';
+import FullBleedSection from '../components/FullBleedSection';
+import FootprintTabs from '../components/FootprintTabs';
+import CustomerCentric from '../components/CustomerCentric';
+import BusinessFocus from '../components/BusinessFocus';
+import SubsidiariesSection from '../components/SubsidiariesSection';
+import NewsBanner from '../components/NewsBanner';
+import SethmoHighlights from '../components/SethmoHighlights';
+import SethmoAgenda from '../components/SethmoAgenda';
+import NewsletterSubscribe from '../components/NewsletterSubscribe';
 
 const Home = () => {
   const containerRef = useRef(null);
@@ -116,45 +120,67 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 2. Big Statement */}
+      {/* 2a. Sethmo Group Promises (new, sits between Hero and Our Footprint) */}
       <section className="snap-section snap-auto">
-        <div className="section-inner section-auto statement-section">
-          <BigStatement />
+        <div className="section-inner section-auto promises-section-wrapper">
+          <PromisesSection />
         </div>
       </section>
 
-      {/* 3. Vision */}
+      {/* 2b. Full-bleed showcase image (new, edge-to-edge) */}
       <section className="snap-section snap-auto">
-        <div className="section-inner section-auto vision-section">
-          <Vision />
+        <div className="section-inner section-auto full-bleed-section-wrapper">
+          <FullBleedSection />
         </div>
       </section>
 
-      {/* 4. Sethmo Showcase (FIXED: Added snap-auto & section-auto) */}
+      {/* 3. Our Footprint | Our Vision | Our Mission (looping tabs) */}
       <section className="snap-section snap-auto">
-        <div className="section-inner section-auto sethmo-section-wrapper">
-          <SethmoSection />
+        <div className="section-inner section-auto footprint-tabs-wrapper">
+          <FootprintTabs />
         </div>
       </section>
 
-      {/* 5. Seven Pillars Banner */}
+      {/* 4. Customer centric - "Our Brands. Centered on You." */}
       <section className="snap-section snap-auto">
-        <div className="section-inner section-auto pillars-section">
-          <SevenPillars />
+        <div className="section-inner section-auto customer-centric-wrapper">
+          <CustomerCentric />
         </div>
       </section>
 
-      {/* 6. Seven Pillars Details */}
+      {/* 5. Business Focus (3D slide) - replaces the old "Our Businesses" section */}
       <section className="snap-section snap-auto">
-        <div className="section-inner section-auto pillars-details-wrapper">
-          <SevenPillarsDetails />
+        <div className="section-inner section-auto business-focus-wrapper">
+          <BusinessFocus />
         </div>
       </section>
 
-      {/* 7. Contact */}
+      {/* 6. Sethmo Group and its Subsidiaries */}
       <section className="snap-section snap-auto">
-        <div className="section-inner section-auto contact-section-wrapper">
-          <ContactUs />
+        <div className="section-inner section-auto subsidiaries-wrapper">
+          <SubsidiariesSection />
+        </div>
+      </section>
+
+      {/* 7. Press Releases / News banner */}
+      <section className="snap-section snap-auto">
+        <div className="section-inner section-auto news-banner-wrapper">
+          <NewsBanner />
+        </div>
+      </section>
+
+      {/* 8. Sethmo Highlights And Latest Updates */}
+      <section className="snap-section snap-auto" id="highlights">
+        <div className="section-inner section-auto highlights-wrapper">
+          <SethmoHighlights />
+          <SethmoAgenda />
+        </div>
+      </section>
+
+      {/* 9. Newsletter subscribe banner */}
+      <section className="snap-section snap-auto">
+        <div className="section-inner section-auto newsletter-wrapper">
+          <NewsletterSubscribe />
         </div>
       </section>
 

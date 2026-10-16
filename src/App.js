@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css';
 
@@ -7,21 +7,28 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import AnalyticsTracker from './components/AnalyticsTracker';
 
 // Import Pages
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
-import Community from './pages/Community';
+import SocialImpact from './pages/SocialImpact';
+import { SOCIAL_IMPACT_PAGES, socialImpactPath } from './data/socialImpactPages';
 import SectorDetail from './pages/SectorDetail';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
+import Employees from './pages/Employees';
+import CareerDetail from './pages/CareerDetail';
 import Sustainability from './pages/Sustainability';
+import News from './pages/News';
+import InvestorRelations from './pages/InvestorRelations';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <AnalyticsTracker />
 
       <div className="App">
         <Navbar />
@@ -34,12 +41,18 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/services/:id" element={<SectorDetail />} />
 
-            <Route path="/community" element={<Community />} />
-            <Route path="/news" element={<Community />} />
+            {/* Social Impact: the old Community page is replaced by three pages */}
+            <Route path="/social-impact" element={<Navigate to={socialImpactPath(SOCIAL_IMPACT_PAGES[0].slug)} replace />} />
+            <Route path="/social-impact/:slug" element={<SocialImpact />} />
+            <Route path="/community" element={<Navigate to={socialImpactPath(SOCIAL_IMPACT_PAGES[0].slug)} replace />} />
+            <Route path="/news" element={<News />} />
 
             <Route path="/contact" element={<Contact />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/careers/:slug" element={<CareerDetail />} />
+            <Route path="/employees" element={<Employees />} />
             <Route path="/sustainability" element={<Sustainability />} />
+            <Route path="/investor-relations" element={<InvestorRelations />} />
           </Routes>
         </main>
 

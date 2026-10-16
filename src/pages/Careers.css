@@ -119,3 +119,266 @@
   background: var(--sethmo-red);
   margin-top: 10px;
 }
+/* =========================================================
+   CAREERS TOPICS PAGE  (title → full-width hero → next big thing)
+========================================================= */
+.cp {
+  --navy: #272f4d;
+  --orange: #ff7f11;
+  width: 100%;
+  background: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.cp-top { padding: 0.9rem clamp(1rem, 1.4vw, 1.4rem) 0.45rem; }
+
+.cp-top h1 {
+  margin: 0;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
+  font-weight: 600;
+  color: #5a5a5a;
+  line-height: 1.2;
+}
+
+.cp-hero { width: 100%; margin: 0; padding: 0; line-height: 0; background: #ece7e2; }
+.cp-hero img { display: block; width: 100%; height: auto; max-width: none; }
+
+.cp-next {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.2rem) clamp(1rem, 3vw, 2rem) clamp(3rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.cp-next h2 {
+  margin: 0 0 clamp(1.6rem, 3vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--navy);
+}
+
+.cp-next h2 span {
+  display: inline-block;
+  padding: 0 0.3rem 0.22rem;
+  border-bottom: 5px solid var(--orange);
+  border-radius: 3px;
+}
+
+.cp-next-body p {
+  max-width: 100%;
+  margin: 0;
+  font-size: clamp(0.88rem, 1.06vw, 1rem);
+  line-height: 1.42;
+  color: #555;
+}
+
+.cp-accent { color: var(--orange); }
+
+.cp-closing {
+  margin: clamp(1.8rem, 3vw, 2.6rem) 0 0;
+  font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* =========================================================
+   PURPOSE & PRESIDENT  →  APPLY + PROFILE  →  JOB CATEGORIES
+========================================================= */
+.cp-purpose {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem) clamp(2.5rem, 5vw, 4rem);
+}
+
+.cp-purpose h2,
+.cp-cats h2 {
+  margin: 0 0 clamp(1.6rem, 3.5vw, 3rem);
+  text-align: center;
+  font-size: clamp(1.4rem, 2.3vw, 2rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+.cp-purpose-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+}
+
+.cp-purpose-photo {
+  display: block;
+  aspect-ratio: 1.46 / 1;
+  background: #d9dbe2;
+  overflow: hidden;
+}
+
+.cp-purpose-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  user-select: none;
+}
+
+.cp-purpose-card:hover .cp-purpose-photo img { transform: scale(1.04); }
+
+.cp-purpose-caption {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.05rem 0.55rem 0.15rem;
+  border: 1.5px solid var(--orange);
+  border-radius: 6px;
+  font-size: clamp(1.15rem, 2vw, 1.75rem);
+  font-weight: 300;
+  line-height: 1.3;
+  color: #1f1f24;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cp-purpose-caption:hover,
+.cp-purpose-caption:focus-visible {
+  background: var(--orange);
+  color: #fff;
+}
+
+/* ---------- Apply button + corporate profile ---------- */
+.cp-apply {
+  padding: 0 clamp(0.6rem, 1.2vw, 1.2rem) clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.cp-apply-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 470px);
+  min-height: clamp(62px, 6.3vw, 92px);
+  padding: 0.6rem 1rem;
+  box-sizing: border-box;
+  background: var(--orange);
+  color: #fff;
+  font-family: Arial, 'Inter', sans-serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cp-apply-btn:hover { background: #e9700a; transform: translateY(-2px); }
+
+.cp-profile {
+  display: block;
+  margin: clamp(1.8rem, 4vw, 3rem) 0 0;
+  min-height: clamp(220px, 32vw, 470px);
+  border: 1px solid #9a9a9a;
+  background: #f1f3f3;
+  color: #231f20;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.cp-profile img { display: block; width: 100%; height: auto; }
+
+.cp-profile-text {
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.cp-profile-text span {
+  font-size: clamp(1.5rem, 3.2vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+.cp-profile-text strong {
+  font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+a.cp-profile:hover { border-color: var(--orange); }
+
+/* ---------- Job categories ---------- */
+.cp-cats { padding: 0 0 clamp(3rem, 6vw, 5rem); scroll-margin-top: 90px; }
+
+.cp-cats h2 { margin-bottom: clamp(1rem, 2vw, 1.6rem); }
+
+.cp-cats-body {
+  max-width: 1260px;
+  margin: 0 auto clamp(1.6rem, 3vw, 2.4rem);
+  padding: 0 clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(0.82rem, 1vw, 0.95rem);
+  line-height: 1.55;
+  color: #555;
+}
+
+.cp-cats-band { background: #272d4b; padding: clamp(1rem, 2.4vw, 2rem) 0; }
+
+.cp-cats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(1rem, 2.6vw, 2.4rem) 0.4rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 0.4rem;
+}
+
+.cp-cat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  padding: 0.5rem 0.3rem;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: clamp(0.95rem, 1.5vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cp-cat svg { transition: transform 0.25s ease; }
+.cp-cat:hover,
+.cp-cat:focus-visible,
+.cp-cat.is-open { color: #ff9a45; }
+.cp-cat.is-open svg { transform: rotate(180deg); }
+.cp-cat:focus-visible { outline: 2px solid #ff9a45; outline-offset: 2px; }
+
+.cp-cat-panel {
+  max-width: 1100px;
+  margin: 1.6rem auto 0;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+  text-align: center;
+  animation: cp-panel-in 0.25s ease both;
+}
+
+.cp-cat-panel h3 { margin: 0 0 1rem; font-size: 1.3rem; color: var(--navy); }
+.cp-cat-empty { color: #666; font-size: 0.98rem; margin: 0; }
+
+@keyframes cp-panel-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .cp-cats-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .cp-purpose-grid { grid-template-columns: 1fr; }
+  .cp-cats-grid { grid-template-columns: repeat(2, 1fr); }
+}

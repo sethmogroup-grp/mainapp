@@ -22,23 +22,6 @@ export const getHeroSettings = async () => {
   return res.json();
 };
 
-// ---------- Vision ----------
-export const getVisionData = async () => {
-  const res = await fetch(`${API_URL}/api/vision`); // 🟢 Added /api
-  if (!res.ok) throw new Error('Failed to fetch vision data');
-  return res.json();
-};
-
-export const saveVisionData = async (data) => {
-  const res = await fetch(`${API_URL}/api/vision`, { // 🟢 Added /api
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error('Failed to save vision data');
-  return res.json();
-};
-
 // ---------- About ----------
 export const getAboutData = async () => {
   const res = await fetch(`${API_URL}/api/about`); // 🟢 Added /api
@@ -216,6 +199,183 @@ export const uploadHomeBusinessFile = async (file) => {
     method: 'POST',
     body: formData,
   });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Promises Section ----------
+export const getPromisesData = async () => {
+  const res = await fetch(`${API_URL}/api/promises`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const savePromisesData = async (data) => {
+  const res = await fetch(`${API_URL}/api/promises`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadPromiseFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/api/promises/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Full-Bleed Banner Section ----------
+export const getFullBleedData = async () => {
+  const res = await fetch(`${API_URL}/api/full-bleed`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveFullBleedData = async (data) => {
+  const res = await fetch(`${API_URL}/api/full-bleed`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadFullBleedFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/api/full-bleed/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- News Banner (homepage CTA) ----------
+export const getNewsBanner = async () => {
+  const res = await fetch(`${API_URL}/api/news-banner`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveNewsBanner = async (data) => {
+  const res = await fetch(`${API_URL}/api/news-banner`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Home: Footprint / Vision / Mission tabs ----------
+export const getFootprintTabs = async () => {
+  const res = await fetch(`${API_URL}/api/footprint-tabs`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Home: Customer-centric ("Our Brands. Centered on You.") ----------
+export const getCustomerCentric = async () => {
+  const res = await fetch(`${API_URL}/api/customer-centric`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Home: Business Focus (3D slide) ----------
+export const getBusinessFocus = async () => {
+  const res = await fetch(`${API_URL}/api/business-focus`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Home: Subsidiaries ----------
+export const getSubsidiariesSection = async () => {
+  const res = await fetch(`${API_URL}/api/subsidiaries-section`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+
+// ---------- Home: Sethmo Highlights And Latest Updates ----------
+export const getHighlights = async () => {
+  const res = await fetch(`${API_URL}/api/highlights`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Home: Newsletter subscribe banner ----------
+export const getNewsletterSection = async () => {
+  const res = await fetch(`${API_URL}/api/newsletter`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const subscribeToNewsletter = async (email) => {
+  const res = await fetch(`${API_URL}/api/newsletter-subscribers`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+  return data;
+};
+
+
+// ---------- About Us page ----------
+export const getAboutPage = async () => {
+  const res = await fetch(`${API_URL}/api/about-page`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Sustainability page ----------
+export const getSustainabilityPage = async () => {
+  const res = await fetch(`${API_URL}/api/sustainability-page`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Employees page ----------
+export const getEmployeesPage = async () => {
+  const res = await fetch(`${API_URL}/api/employees-page`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Careers Topics page (hero + "The next big thing") ----------
+export const getCareersPage = async () => {
+  const res = await fetch(`${API_URL}/api/careers-page`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Home: Sustainability Agenda 2037 banner ----------
+export const getAgendaBanner = async () => {
+  const res = await fetch(`${API_URL}/api/agenda-banner`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Social Impact -> The Goodness Programme ----------
+export const getSocialImpact = async () => {
+  const res = await fetch(`${API_URL}/api/social-impact`);
+  if (!res.ok) throw new Error('Failed to fetch social impact page');
+  return res.json();
+};
+
+// ---------- Footer: contact details + social links ----------
+export const getFooterSettings = async () => {
+  const res = await fetch(`${API_URL}/api/footer-settings`);
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };

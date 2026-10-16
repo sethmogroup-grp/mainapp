@@ -1,10 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Youtube, Twitter, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import './Footer.css';
-import icon from '../assets/icon.png';
+import PrivacyModal from './PrivacyModal';
+import useSectionData from '../hooks/useSectionData';
+import { getFooterSettings } from '../services/contentServices';
+import {
+  FOOTER_DEFAULTS,
+  FOOTER_DESCRIPTION,
+  FOOTER_INDUSTRIES,
+  FOOTER_LOGO,
+  FOOTER_OWLS,
+  FOOTER_QUICK_LINKS,
+  FOOTER_SOCIALS,
+} from '../data/footerDefaults';
 
-const TermsModal = ({ onClose }) => {
+// "(+260) (0) 211 374 200" -> tel:+260211374200
+const telHref = (text = '') => `tel:+${text.replace(/\(0\)/g, '').replace(/\D/g, '')}`;
+
+const TermsModal = ({ onClose, contact }) => {
+  const { addressLines, phones, emails } = contact;
+  const addressInline = addressLines.join(', ');
+  const mainEmail = emails[0]?.text?.trim();
+  const mainPhone = phones[0]?.text?.trim();
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -255,8 +274,23 @@ const TermsModal = ({ onClose }) => {
           <section className="terms-section">
             <h3>11. Contact</h3>
             <p>
-              This Site is operated by Sethmo Group, Cairo Road, Plot No. 120, Lusaka, Zambia.
+              This Site is operated by Sethmo Group, {addressInline}.
             </p>
+            <ul className="terms-contact-list">
+              {addressLines.map((line, i) => (
+                <li key={`addr-${i}`}>{line}</li>
+              ))}
+              {phones.map((p) => (
+                <li key={p.id}>
+                  <a href={telHref(p.text)} className="terms-link">{p.text}</a>
+                </li>
+              ))}
+              {emails.map((e) => (
+                <li key={e.id}>
+                  <a href={`mailto:${e.text.trim()}`} className="terms-link">{e.text}</a>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section className="terms-section">
@@ -264,14 +298,21 @@ const TermsModal = ({ onClose }) => {
             <p>
               If you have a question or complaint regarding the Site or these Terms of Use, please send an
               email to{' '}
-              <a href="mailto:info@sethmogroup.com" className="terms-link">
-                info@sethmogroup.com
-              </a>
-              . You may also contact us by writing to Public Relations and Corporate Affairs, Sethmo Group,
-              Cairo Road, Plot No. 120, Lusaka, Zambia or by calling us at{' '}
-              <a href="tel:+260771574157" className="terms-link">
-                +260 771 574 157
-              </a>
+              {mainEmail && (
+                <a href={`mailto:${mainEmail}`} className="terms-link">
+                  {mainEmail}
+                </a>
+              )}
+              . You may also contact us by writing to Public Relations and Corporate Affairs, Sethmo Group,{' '}
+              {addressInline}
+              {mainPhone && (
+                <>
+                  {' '}or by calling us at{' '}
+                  <a href={telHref(mainPhone)} className="terms-link">
+                    {mainPhone}
+                  </a>
+                </>
+              )}
               .
             </p>
 
@@ -340,168 +381,123 @@ const TermsModal = ({ onClose }) => {
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [showTerms, setShowTerms] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const data = useSectionData(getFooterSettings, FOOTER_DEFAULTS);
+  const D = FOOTER_DEFAULTS;
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://images.dmca.com/Badges/DMCABadgeHelper.min.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  const addressLines = (data?.addressLines || D.addressLines).split('\n').filter((l) => l.trim());
+  const phones = (Array.isArray(data?.phones) && data.phones.length ? data.phones : D.phones).filter((p) => p.text?.trim());
+  const emails = (Array.isArray(data?.emails) && data.emails.length ? data.emails : D.emails).filter((e) => e.text?.trim());
 
   return (
     <>
-      <footer className="main-footer">
+      <footer className="ft">
+        {/* owl illustrations in the background - same places as the design */}
+        <img className="ft-owls" src={FOOTER_OWLS} alt="" aria-hidden="true" draggable="false" />
 
-        <div className="footer-content">
+        <div className="ft-content">
+          {/* ---------- brand ---------- */}
+          <div className="ft-col ft-brand">
+            <Link to="/" aria-label="Sethmo Group home">
+              <img className="ft-logo" src={FOOTER_LOGO} alt="Sethmo Group" draggable="false" />
+            </Link>
 
-          <div className="footer-col brand-col">
-            <div className="footer-logo">
-              <img src={icon} alt="Sethmo Logo" className="footer-logo-img" />
-              <span className="footer-logo-text">
-                Sethmo<span className="text-highlight">Group</span>
-              </span>
-            </div>
-
-            <p className="footer-desc">
-              A diversified multi-sector powerhouse committed to sustainable growth,
-              innovation, and community impact. Driven by excellence, we remain
-              proudly <strong>Inspired By You</strong>.
+            <p className="ft-desc">
+              {FOOTER_DESCRIPTION.split('\n').map((line, i, arr) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < arr.length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </p>
 
-            <div className="social-links">
-              <a
-                href="https://www.facebook.com/share/1DJHvBsWiu/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-              >
-                <Facebook size={18} />
-              </a>
-
-              <a
-                href="https://x.com/SethmoGroup"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-              >
-                <Twitter size={18} />
-              </a>
-
-              <a
-                href="https://www.instagram.com/sethmogroup?igsh=dmUxcHZ1Z200dXIy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-              >
-                <Instagram size={18} />
-              </a>
-
-              <a
-                href="https://www.youtube.com/@SethmoGroup"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-icon"
-              >
-                <Youtube size={18} />
-              </a>
+            <div className="ft-social">
+              {FOOTER_SOCIALS.map(({ key, label, icon }) => {
+                const url = (data?.[key] ?? D[key] ?? '').trim();
+                return url ? (
+                  <a key={key} href={url} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
+                    <img src={icon} alt="" draggable="false" />
+                  </a>
+                ) : (
+                  <span key={key} className="is-pending" aria-label={`${label} (link coming soon)`} title={`${label} - coming soon`}>
+                    <img src={icon} alt="" draggable="false" />
+                  </span>
+                );
+              })}
             </div>
           </div>
 
-          <div className="footer-col">
-            <h4 className="footer-heading">Our Sectors</h4>
-            <ul className="footer-links-list">
-              <li><Link to="/services/mining">Mining &amp; Resources</Link></li>
-              <li><Link to="/services/agriculture">Agribusiness</Link></li>
-              <li><Link to="/services/finance">Finance &amp; Capital</Link></li>
-              <li><Link to="/services/logistics">Logistics &amp; Shipping</Link></li>
-              <li><Link to="/services/manufacturing">Manufacturing</Link></li>
-              <li><Link to="/services/hospitality">Hospitality</Link></li>
+          {/* ---------- industries ---------- */}
+          <div className="ft-col">
+            <h4 className="ft-heading">Our Industries</h4>
+            <ul className="ft-list">
+              {FOOTER_INDUSTRIES.map((item) => (
+                <li key={item.id}><Link to={item.to}>{item.label}</Link></li>
+              ))}
             </ul>
           </div>
 
-          <div className="footer-col">
-            <h4 className="footer-heading">Quick Links</h4>
-            <ul className="footer-links-list">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/sustainability">Sustainability</Link></li>
-              <li><Link to="/careers">Careers</Link></li>
-              <li><Link to="/news">News &amp; Media</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+          {/* ---------- quick links ---------- */}
+          <div className="ft-col">
+            <h4 className="ft-heading">Quick Links</h4>
+            <ul className="ft-list">
+              {FOOTER_QUICK_LINKS.map((item) => (
+                <li key={item.label}><Link to={item.to}>{item.label}</Link></li>
+              ))}
             </ul>
           </div>
 
-          <div className="footer-col contact-col">
-            <h4 className="footer-heading">Contact Us</h4>
-
-            <div className="contact-row">
-              <span className="contact-icon">📍</span>
-              <p>
-                Room No., Great North Road Next to Shoprite,
-                <br />
-                Lusaka, Zambia
-              </p>
-            </div>
-
-            <div className="contact-row">
-              <span className="contact-icon">📞</span>
-              <p>+260 976252655</p>
-            </div>
-
-            <div className="contact-row">
-              <span className="contact-icon">✉️</span>
-              <p>info@sethmogroup.com</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="footer-bottom">
-          <div className="footer-bottom-inner">
-
-            <p>&copy; {currentYear} Sethmo Group Limited. All rights reserved.</p>
-
-            <div className="legal-links">
-              <Link to="/privacy">Privacy Policy</Link>
-
-              <span className="separator">|</span>
-
-              <button
-                type="button"
-                className="terms-trigger-btn"
-                onClick={() => setShowTerms(true)}
-              >
-                Terms of Service
-              </button>
-
-              <span className="separator">|</span>
-
-              <div className="dmca-badge-wrapper">
-                <a
-                  href="//www.dmca.com/Protection/Status.aspx?ID=a9472487-f9e5-4c63-ae11-33046f504d4a"
-                  title="DMCA.com Protection Status"
-                  className="dmca-badge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-01.png?ID=a9472487-f9e5-4c63-ae11-33046f504d4a"
-                    alt="DMCA.com Protection Status"
-                  />
-                </a>
-              </div>
-            </div>
-
+          {/* ---------- contact ---------- */}
+          <div className="ft-col ft-contact">
+            <h4 className="ft-heading">Contact Us</h4>
+            <ul className="ft-list">
+              {addressLines.map((line, i) => (
+                <li key={`a${i}`}>{line}</li>
+              ))}
+              {phones.map((p) => (
+                <li key={p.id}><a href={telHref(p.text)}>{p.text}</a></li>
+              ))}
+              {emails.map((e) => (
+                <li key={e.id}><a href={`mailto:${e.text.trim()}`}>{e.text}</a></li>
+              ))}
+            </ul>
           </div>
         </div>
 
+        {/* ---------- bottom bar ---------- */}
+        <div className="ft-bottom">
+          <p className="ft-copy">
+            <span className="ft-copy-mark" aria-hidden="true">C</span>
+            <span className="sr-only">&copy;</span> {currentYear} Sethmo Group Limited.&nbsp; All rights Reserved
+          </p>
+
+          <div className="ft-legal">
+            <button type="button" className="ft-terms" onClick={() => setShowPrivacy(true)}>
+              Privacy Policy
+            </button>
+            <i className="ft-bar" aria-hidden="true" />
+            <button type="button" className="ft-terms" onClick={() => setShowTerms(true)}>
+              Terms Of Service
+            </button>
+            <i className="ft-bar" aria-hidden="true" />
+            <a
+              className="ft-dmca"
+              href="//www.dmca.com/Protection/Status.aspx?ID=a9472487-f9e5-4c63-ae11-33046f504d4a"
+              title="DMCA.com Protection Status"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>DMCA</span>
+              <span>PROTECTED</span>
+            </a>
+          </div>
+        </div>
       </footer>
 
-      {showTerms && <TermsModal onClose={() => setShowTerms(false)} />}
+      {showTerms && (
+        <TermsModal onClose={() => setShowTerms(false)} contact={{ addressLines, phones, emails }} />
+      )}
+      {showPrivacy && <PrivacyModal onClose={() => setShowPrivacy(false)} />}
     </>
   );
 };
