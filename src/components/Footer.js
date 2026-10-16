@@ -479,14 +479,17 @@ const Footer = () => {
             <button type="button" className="ft-terms" onClick={() => setShowTerms(true)}>
               Terms Of Service
             </button>
-            <i className="ft-bar" aria-hidden="true" />
             <a
               className="ft-dmca"
-              href="//www.dmca.com/Protection/Status.aspx?ID=a9472487-f9e5-4c63-ae11-33046f504d4a"
+              href="//www.dmca.com"
               title="DMCA.com Protection Status"
               target="_blank"
               rel="noopener noreferrer"
             >
+            <img
+            src="https://dmca.com"
+            alt="DMCA.com Protection Status"
+            />
               <span>DMCA</span>
               <span>PROTECTED</span>
             </a>
