@@ -1,0 +1,360 @@
+/* =========================================================
+   OUR FOOTPRINT | OUR VISION | OUR MISSION  (looping tabs)
+   Card positions are percentages of the card, so the whole
+   design scales together. Font sizes use cqw (card width).
+========================================================= */
+.fvm {
+  --navy: #272f4d;
+  --orange: #f47b20;
+  width: 100%;
+  padding: 5.5rem 0 4rem;
+  background: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--navy);
+}
+
+/* ---------- Tabs ---------- */
+.fvm-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 3;
+}
+
+.fvm-tab {
+  background: none;
+  border: 0;
+  border-bottom: 1.5px solid transparent;
+  padding: 0.15rem 0.7rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+  cursor: pointer;
+  transition: border-color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.8;
+}
+
+.fvm-tab:hover,
+.fvm-tab.is-active {
+  opacity: 1;
+}
+
+.fvm-tab.is-active {
+  border-bottom-color: var(--navy);
+}
+
+.fvm-tab-sep {
+  width: 2px;
+  height: 1.3rem;
+  background: #d6d8de;
+}
+
+/* ---------- Stage + arrows ---------- */
+.fvm-stage {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 92px;
+}
+
+.fvm-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--navy);
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.fvm-arrow:hover {
+  background: #1b2138;
+  transform: translateY(-50%) scale(1.06);
+}
+
+.fvm-arrow-prev { left: 12px; }
+.fvm-arrow-next { right: 12px; }
+
+/* ---------- Slides (stacked on top of each other) ---------- */
+.fvm-slides {
+  display: grid;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.fvm-slide {
+  grid-area: 1 / 1;
+  /* the slide is the size container the cqw units inside the card measure against */
+  container-type: inline-size;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* waiting off-stage on the side it will enter from (no transition = no flicker) */
+.fvm-slide.is-idle {
+  transform: translateX(calc(var(--dir) * 48px));
+}
+
+.fvm-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  z-index: 2;
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.fvm-slide.is-leaving {
+  opacity: 0;
+  visibility: visible;
+  transform: translateX(calc(var(--dir) * -48px));
+  z-index: 1;
+  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+/* ---------- Card ---------- */
+.fvm-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4.22 / 1;
+  border: 1px solid #8a8a8f;
+  border-radius: 4.2cqw;
+  background: #fff;
+  /* the person / flag are allowed to poke out of the card */
+  overflow: visible;
+}
+
+.fvm-card > *,
+.fvm-side {
+  position: absolute;
+}
+
+.fvm-panel {
+  top: -1px;
+  bottom: -1px;
+  background: var(--panel);
+  border-radius: 4.2cqw;
+}
+
+.fvm-photo {
+  top: -1px;
+  bottom: -1px;
+  overflow: hidden;
+  border-radius: 4.2cqw;
+}
+
+.fvm-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fvm-text {
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.fvm-heading {
+  margin: 0 0 0.9cqw;
+  font-size: 1.95cqw;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: 0.005em;
+}
+
+.fvm-heading span {
+  display: block;
+}
+
+.fvm-subheading {
+  margin: 0 0 0.5cqw;
+  font-size: 1.15cqw;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.fvm-body {
+  margin: 0;
+  font-size: 1.15cqw;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.fvm-rule {
+  display: block;
+  width: 5.6cqw;
+  height: 1.5px;
+  background: #fff;
+  margin-top: 1.1cqw;
+}
+
+.fvm-btn {
+  display: inline-block;
+  margin-top: 0.9cqw;
+  padding: 0.35cqw 1.5cqw;
+  border-radius: 0.5cqw;
+  background: #fff;
+  color: var(--panel);
+  font-size: 0.75cqw;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fvm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.fvm-quoteblock {
+  display: contents;
+}
+
+.fvm-side img {
+  display: block;
+}
+
+/* ---------- FOOTPRINT: photo | orange panel | map ---------- */
+.fvm-footprint .fvm-panel { left: -1px; width: 60.7%; }
+.fvm-footprint .fvm-photo { left: -1px; width: 27.2%; }
+.fvm-footprint .fvm-text  { left: 31.4%; width: 27.4%; }
+.fvm-footprint .fvm-side {
+  left: 81%;
+  top: 50%;
+  height: 92%;
+  transform: translate(-50%, -50%);
+}
+.fvm-footprint .fvm-side img { height: 100%; width: auto; }
+
+/* ---------- VISION: person + quote | photo | navy panel (text right-aligned) ---------- */
+.fvm-vision .fvm-panel { left: 39.3%; right: -1px; }
+.fvm-vision .fvm-photo { left: 39.3%; width: 27.4%; }
+.fvm-vision .fvm-text  { right: 2.4%; width: 29.5%; text-align: right; }
+.fvm-vision .fvm-rule  { margin-left: auto; }
+.fvm-vision .fvm-side  { left: 4%; bottom: -1px; width: 17%; }
+.fvm-vision .fvm-side img { width: 100%; height: auto; }
+.fvm-vision .fvm-quote {
+  position: absolute;
+  left: 22.4%;
+  top: 50%;
+  width: 16%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: 1.95cqw;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #2a2a2a;
+}
+
+/* ---------- MISSION: photo | grey panel | flag (flag pokes out top/right) ---------- */
+.fvm-mission .fvm-panel { left: -1px; width: 60.7%; }
+.fvm-mission .fvm-photo { left: -1px; width: 27.3%; }
+.fvm-mission .fvm-text  { left: 29.6%; width: 28.6%; }
+.fvm-mission .fvm-side  { left: 65%; top: -30%; width: 43.3%; }
+.fvm-mission .fvm-side img { width: 100%; height: auto; }
+
+/* =========================================================
+   TABLET + MOBILE  -> cards stack vertically
+========================================================= */
+@media (max-width: 899px) {
+  .fvm { padding: 3.5rem 0 3rem; }
+
+  .fvm-stage { padding: 0 16px 76px; }
+
+  .fvm-arrow {
+    top: auto;
+    bottom: 0;
+    transform: none;
+    width: 52px;
+    height: 52px;
+  }
+  .fvm-arrow:hover { transform: scale(1.06); }
+  .fvm-arrow-prev { left: calc(50% - 62px); }
+  .fvm-arrow-next { right: calc(50% - 62px); }
+
+  .fvm-tab { font-size: 0.78rem; padding: 0.15rem 0.45rem; }
+
+  .fvm-slide { container-type: normal; }
+
+  .fvm-card {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 28px;
+  }
+
+  .fvm-card > *,
+  .fvm-side,
+  .fvm-vision .fvm-quote {
+    position: static;
+    transform: none;
+  }
+
+  .fvm-panel { display: none; }
+
+  .fvm-photo {
+    width: 100%;
+    height: 210px;
+    border-radius: 20px;
+    order: 1;
+  }
+
+  .fvm-text {
+    order: 2;
+    width: 100% !important;
+    background: var(--panel);
+    padding: 20px 20px 22px;
+    border-radius: 20px;
+  }
+
+  .fvm-heading { font-size: 1.35rem; margin-bottom: 0.6rem; }
+  .fvm-subheading, .fvm-body { font-size: 0.9rem; line-height: 1.6; }
+  .fvm-rule { width: 56px; margin-top: 14px; }
+  .fvm-btn { font-size: 0.75rem; padding: 6px 18px; margin-top: 12px; border-radius: 6px; }
+
+  .fvm-quoteblock {
+    order: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .fvm-side { width: auto; height: auto; }
+
+  .fvm-footprint .fvm-side { height: 200px; transform: none; }
+  .fvm-footprint .fvm-side img { height: 200px; width: auto; }
+
+  .fvm-vision .fvm-side { order: -1; width: 120px; }
+  .fvm-vision .fvm-quote {
+    width: auto;
+    max-width: 200px;
+    font-size: 1.15rem;
+    align-self: center;
+  }
+
+  .fvm-mission .fvm-side { width: min(70%, 260px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fvm-slide.is-active,
+  .fvm-slide.is-leaving { transition: opacity 0.2s linear; transform: none; }
+}

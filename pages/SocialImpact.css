@@ -1,0 +1,28 @@
+.si-page { background: #fff; }
+
+.si-placeholder {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #272f4d;
+}
+
+.si-eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f47b20;
+  font-weight: 600;
+}
+
+.si-placeholder h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; }
+
+.si-rule { display: block; width: 64px; height: 3px; margin: 1.4rem 0; background: #f47b20; }
+
+.si-note { margin: 0; color: #6b7280; }

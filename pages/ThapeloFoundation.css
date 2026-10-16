@@ -1,0 +1,324 @@
+/* Thapelo Foundation - sliding hero. Edge to edge like the other hero banners on the site. */
+.tf { width: 100%; background: #fff; overflow: hidden; }
+
+.tf-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 597.6 / 223.3; /* the approved artboard */
+  max-height: 36rem;
+  overflow: hidden;
+  background: #7a6a58;
+}
+
+.tf-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.tf-slide.is-active { opacity: 1; }
+
+/* logo: top right, same place on every picture (artboard: 5.7% from the right, 2.7% from the top) */
+.tf-logo {
+  position: absolute;
+  right: 5.7%;
+  top: 2.7%;
+  width: clamp(96px, 20.6%, 300px);
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tf-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tf-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.tf-dot.is-active { background: #fff; transform: scale(1.15); }
+.tf-dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .tf-hero { max-height: none; }
+  .tf-dots { bottom: 8px; gap: 8px; }
+  .tf-dot { width: 8px; height: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tf-slide { transition: none; }
+}
+
+/* ---------- Our Oath (same sizes as the Goodness Programme page) ---------- */
+.tf-oath {
+  padding: clamp(2.6rem, 6vw, 5rem) 0;
+  text-align: center;
+  background: #fff;
+}
+.tf-oath-title {
+  margin: 0 0 0.8rem;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  line-height: 1.2;
+  color: #f5821f;
+}
+.tf-oath-text {
+  width: min(85.4%, 1200px);
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+  line-height: 1.5;
+  color: #00aff0;
+  text-wrap: balance;
+}
+
+/* ---------- three colours that slide up ---------- */
+.tf-panels {
+  width: min(90.4%, 1100px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 3), 1fr);
+  background: #fff;
+}
+
+.tf-card {
+  position: relative;
+  display: grid;                       /* info and colour share one cell, so the card grows if the words need more room */
+  aspect-ratio: 180.7 / 249.5;         /* the approved proportions */
+  overflow: hidden;
+  background: var(--c);
+}
+
+.tf-card-info,
+.tf-cover { grid-area: 1 / 1; }
+
+.tf-card-info {
+  padding: clamp(1rem, 2.2vw, 1.8rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.7rem;
+  background: #fff;
+  border: 2px solid var(--c);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.tf-card-title {
+  margin: 0;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  line-height: 1.2;
+  color: var(--c);
+}
+.tf-card-text {
+  margin: 0;
+  font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+  line-height: 1.5;
+  color: #333;
+}
+.tf-card-btn {
+  align-self: flex-start;
+  margin-top: 0.3rem;
+  padding: 0.5em 1.1em;
+  border-radius: 0.45em;
+  background: var(--c);
+  color: #fff;
+  font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+}
+a.tf-card-btn:hover,
+a.tf-card-btn:focus-visible { filter: brightness(0.88); }
+
+.tf-cover {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--c);
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.25, 1);
+}
+.tf-cover:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+.tf-cover-label {
+  padding: 0 1rem;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  text-align: center;
+}
+
+/* slide up: mouse over it, keyboard focus inside it, or tapped open on a touch screen */
+@media (hover: hover) and (pointer: fine) {
+  .tf-card:hover .tf-cover { transform: translateY(-100%); }
+}
+.tf-card.is-open .tf-cover,
+.tf-card:focus-within .tf-cover { transform: translateY(-100%); }
+
+/* ---------- About block + Feeding Program (page 4 design) ---------- */
+.tf-prog {
+  --u: calc(100cqw / 540);                 /* 1pt of the 540pt-wide design */
+  --ut: min(calc(100cqw / 540), 1.4px);    /* text never bigger than the site's normal reading size */
+  container-type: inline-size;
+  width: 100%; /* edge to edge */
+  margin: 0;
+  background: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.tf-prog img { display: block; }
+
+.tf-about {
+  position: relative;
+  aspect-ratio: 1500 / 618;
+  overflow: hidden;
+  color: #fff;
+  background: #7d4631;
+}
+.tf-about-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tf-about-logo {
+  position: absolute;
+  left: 3.2%;
+  top: 3%;
+  width: min(16.4%, 190px);
+  height: auto;
+}
+.tf-about-body {
+  position: absolute;
+  left: 3.4%;
+  top: 27.7%;
+  width: 57.4%;
+  max-width: 44rem; /* keeps lines a comfortable length on very wide screens */
+}
+.tf-about-text {
+  margin: 0;
+  font-size: calc(var(--ut) * 10.9);
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+.tf-about-btn {
+  display: inline-block;
+  margin-top: calc(var(--ut) * 10.5);
+  margin-left: 0.4%;
+  padding: calc(var(--ut) * 4.6) calc(var(--ut) * 8);
+  border-radius: calc(var(--ut) * 6);
+  background: #fff;
+  color: #00aff0;
+  font-size: calc(var(--ut) * 12.5);
+  font-weight: 600;
+  line-height: 1.1;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+}
+
+.tf-feed {
+  display: grid;
+  grid-template-columns: 49.8% 1fr;
+  background: #fff;
+}
+.tf-feed-img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 748 / 421;
+  object-fit: cover;
+}
+.tf-feed-body {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--ut) * 9) 4% calc(var(--ut) * 6) 2.8%;
+}
+.tf-feed-title {
+  margin: 0;
+  font-size: calc(var(--ut) * 12.5);
+  font-weight: 600;
+  line-height: 1.25;
+  color: #f5821f;
+}
+.tf-feed-text {
+  margin: calc(var(--ut) * 8) 0 calc(var(--ut) * 8);
+  max-width: 42rem;
+  font-size: calc(var(--ut) * 10.4);
+  line-height: 1.2;
+  color: #00aff0;
+}
+.tf-feed-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.tf-feed-btn {
+  padding: calc(var(--ut) * 5) calc(var(--ut) * 8);
+  border-radius: calc(var(--ut) * 6);
+  background: #3b141f;
+  color: #fff;
+  font-size: calc(var(--ut) * 12.5);
+  font-weight: 600;
+  line-height: 1.1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: filter 0.2s ease;
+}
+.tf-feed-tag {
+  font-size: calc(var(--ut) * 8.4);
+  font-weight: 600;
+  color: #f5821f;
+  text-align: right;
+}
+a.tf-about-btn:hover, a.tf-about-btn:focus-visible,
+a.tf-feed-btn:hover, a.tf-feed-btn:focus-visible { filter: brightness(0.9); }
+
+/* ---------- smaller screens: nothing is squeezed or stretched, blocks stack ---------- */
+@media (max-width: 900px) {
+  .tf-panels { grid-template-columns: 1fr; }
+  .tf-card { aspect-ratio: auto; min-height: 12.5rem; }
+  .tf-card-info { padding: 1.4rem; }
+}
+
+@container (max-width: 640px) {
+  .tf-about { aspect-ratio: auto; display: flex; flex-direction: column; background: #7d4631; }
+  .tf-about-img { position: relative; inset: auto; height: auto; aspect-ratio: 1500 / 618; min-height: 11rem; object-position: 70% center; }
+  .tf-about-logo { position: absolute; left: 4%; top: 3%; width: clamp(84px, 24%, 140px); }
+  .tf-about-body { position: static; width: auto; padding: 1.1rem 5% 1.4rem; }
+  .tf-about-text { font-size: 14px; line-height: 1.5; text-shadow: none; }
+  .tf-about-btn { margin: 1rem 0 0; padding: 0.5em 1.1em; font-size: 15px; border-radius: 8px; }
+
+  .tf-feed { grid-template-columns: 1fr; }
+  .tf-feed-img { height: auto; }
+  .tf-feed-body { padding: 1.1rem 5% 1.4rem; }
+  .tf-feed-title { font-size: 18px; }
+  .tf-feed-text { margin: 0.6rem 0 1rem; font-size: 14px; line-height: 1.5; }
+  .tf-feed-foot { flex-wrap: wrap; }
+  .tf-feed-btn { padding: 0.5em 1.1em; font-size: 15px; border-radius: 8px; }
+  .tf-feed-tag { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tf-cover { transition: none; }
+}

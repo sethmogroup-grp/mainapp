@@ -1,0 +1,589 @@
+/* =========================================================
+   EMPLOYEES PAGE
+   breadcrumb + title → full-width hero → Inspired By you
+   → Diverse Individuals → Employee Interview carousel
+========================================================= */
+.emp {
+  --navy: #272f4d;
+  --orange: #ff7f11;
+  --ink: #555;
+  width: 100%;
+  background: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ---------- Breadcrumb + title ---------- */
+.emp-top {
+  padding: 0.55rem clamp(1rem, 1.4vw, 1.4rem) 0.2rem;
+  background: #fff;
+}
+
+.emp-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: #6b6b6b;
+}
+
+.emp-crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.emp-crumbs a:hover { color: var(--orange); }
+
+.emp-top h1 {
+  margin: 0.35rem 0 0.35rem;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
+  font-weight: 600;
+  color: #5a5a5a;
+  line-height: 1.2;
+}
+
+/* ---------- Hero: edge to edge, natural height (never cropped/shrunk) ---------- */
+.emp-hero {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  background: #f1f1f1;
+}
+
+.emp-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+
+/* ---------- Inspired By you ---------- */
+.emp-inspired {
+  padding: clamp(2rem, 4vw, 3.4rem) clamp(1rem, 3vw, 2.5rem) clamp(2rem, 4vw, 3.5rem);
+  text-align: center;
+}
+
+.emp-inspired h2 {
+  margin: 0 0 1.1rem;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.emp-inspired > p {
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+  line-height: 1.6;
+  color: #555;
+}
+
+.emp-venn {
+  position: relative;
+  width: min(100%, 377px);
+  margin: clamp(2rem, 4vw, 3.4rem) auto 0;
+  container-type: inline-size;
+}
+
+.emp-venn svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.emp-venn-label {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 5.4cqw;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.emp-venn-left { left: 20.5%; width: 27%; }
+.emp-venn-right { left: 76%; width: 38%; }
+
+/* ---------- Diverse Individuals ---------- */
+.emp-diverse {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) 1.2fr;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem);
+}
+
+.emp-hub {
+  position: relative;
+  width: min(100%, 420px);
+  justify-self: center;
+  container-type: inline-size;
+}
+
+.emp-hub-arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.emp-hub-logo {
+  position: absolute;
+  width: 19%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+.emp-hub-circle {
+  position: absolute;
+  width: 25.5%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border: 0.9cqw solid var(--orange);
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.emp-hub-circle img {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+  user-select: none;
+}
+
+.emp-hub-caption {
+  position: absolute;
+  width: 34%;
+  margin: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: Arial, 'Inter', sans-serif;
+  font-size: max(7.5px, 2.35cqw);
+  line-height: 1.22;
+  color: var(--navy);
+}
+
+.emp-diverse-copy h2 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(1.9rem, 3.1vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: var(--orange);
+}
+
+.emp-diverse-copy p {
+  margin: 0;
+  max-width: 760px;
+  font-size: clamp(0.85rem, 0.98vw, 0.98rem);
+  line-height: 1.65;
+  color: #666;
+}
+
+/* ---------- Employee Interview ---------- */
+.emp-interview {
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 2rem) clamp(2.5rem, 5vw, 4.5rem);
+  text-align: center;
+}
+
+.emp-interview h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.emp-interview-sub {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+  line-height: 1.55;
+  color: #666;
+}
+
+.emp-carousel {
+  --gap: 0.8rem;
+  --edge: 64px; /* room on each side for the arrows */
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: clamp(1.6rem, 3vw, 2.4rem) auto 0;
+}
+
+.emp-viewport {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 var(--edge);
+  overflow: hidden;
+}
+
+.emp-track {
+  display: flex;
+  width: 100%;
+  transform: translateX(calc(var(--index) * -100% / var(--visible)));
+}
+
+.emp-track.is-animated {
+  transition: transform 0.85s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.emp-slide {
+  flex: 0 0 calc(100% / var(--visible));
+  padding: 0 calc(var(--gap) / 2);
+  box-sizing: border-box;
+}
+
+.emp-card {
+  display: block;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+}
+
+.emp-card-photo {
+  width: 100%;
+  aspect-ratio: 1.03 / 1;
+  background: #e6e8ee;
+  overflow: hidden;
+}
+
+.emp-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+}
+
+.emp-card-text {
+  padding-top: 0.28rem;
+  font-size: 0.78rem;
+  line-height: 1.15;
+  color: #555;
+}
+
+.emp-card-text span {
+  display: block;
+  margin-bottom: 0.08rem;
+}
+
+/* round orange arrows with navy arrow, like the design */
+.emp-arrow {
+  position: absolute;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.emp-arrow:hover { filter: brightness(1.07); transform: scale(1.06); }
+.emp-arrow:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+.emp-arrow-left { left: 0; }
+.emp-arrow-right { right: 0; }
+
+/* keep the arrows level with the middle of the photos:
+   photo width = (carousel width - both edges) / cards shown - gap */
+.emp-carousel .emp-arrow {
+  top: calc(((100cqw - 2 * var(--edge)) / var(--visible) - var(--gap)) / 1.03 / 2 - 22px);
+}
+
+/* ---------- Dots ---------- */
+.emp-dots-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+  margin-top: 2.6rem;
+}
+
+.emp-dots {
+  --cell: 22px;
+  --dot-gap: clamp(1.4rem, 4vw, 3.2rem);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--dot-gap);
+}
+
+.emp-dot {
+  width: var(--cell);
+  height: var(--cell);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.emp-dot i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--orange);
+  transition: transform 0.3s ease;
+}
+
+.emp-dot:hover i { transform: scale(1.25); }
+.emp-dot:focus-visible { outline: 2px solid var(--navy); border-radius: 50%; }
+
+/* the ring that travels dot → dot and wraps back to the first */
+.emp-dots-ring {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--cell);
+  height: var(--cell);
+  margin-top: calc(var(--cell) / -2);
+  border: 1px solid var(--orange);
+  border-radius: 50%;
+  box-sizing: border-box;
+  pointer-events: none;
+  transform: translateX(calc(var(--active) * (var(--cell) + var(--dot-gap))));
+  transition: transform 0.6s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.emp-dots-ring::after {
+  /* a small marker orbiting the ring so the cycle reads as "spinning" */
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  border-top-color: var(--navy);
+  animation: emp-spin 2.4s linear infinite;
+}
+
+@keyframes emp-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* play / pause glyphs */
+.emp-playpause {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.emp-pp {
+  border: 0;
+  background: transparent;
+  padding: 4px;
+  color: var(--orange);
+  opacity: 0.55;
+  cursor: pointer;
+  display: flex;
+  transition: opacity 0.2s ease;
+}
+
+.emp-pp.is-on,
+.emp-pp:hover { opacity: 1; }
+
+/* ---------- See More Interview ---------- */
+.emp-more { margin-top: clamp(2rem, 4vw, 3rem); }
+
+.emp-more-btn {
+  display: inline-block;
+  padding: 0.85rem 1.7rem;
+  background: var(--navy);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.emp-more-btn:hover { background: #1c2340; transform: translateY(-2px); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .emp-diverse { grid-template-columns: 1fr; }
+  .emp-diverse-copy { text-align: center; }
+  .emp-diverse-copy p { margin: 0 auto; }
+}
+
+@media (max-width: 600px) {
+  .emp-carousel { --edge: 48px; }
+  .emp-arrow { width: 38px; height: 38px; }
+  .emp-dots-row { gap: 1rem; flex-wrap: wrap; }
+  .emp-dots { --dot-gap: 0.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emp-track.is-animated { transition-duration: 0.01ms; }
+  .emp-dots-ring::after { animation: none; }
+}
+
+
+/* ---------- People Strategy Centered on Diverse Individuals ---------- */
+.emp-ps {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2.5rem) clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.emp-ps h2 {
+  margin: 0 0 1.6rem;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.emp-ps-intro {
+  max-width: 780px;
+  margin: 0 auto 1.8rem;
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  line-height: 1.55;
+  color: #555;
+}
+
+.emp-ps-banner {
+  max-width: 740px;
+  margin: 2.2rem auto 0;
+  padding: 0.7rem 1rem;
+  background: var(--orange);
+  color: #fff;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.emp-ps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(2rem, 4vw, 3.2rem);
+  text-align: left;
+}
+
+.emp-ps-col { display: flex; flex-direction: column; align-items: stretch; }
+
+.emp-ps-circle {
+  width: min(100%, 250px);
+  aspect-ratio: 1;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.4rem);
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9%;
+  box-sizing: border-box;
+  text-align: center;
+  container-type: inline-size;
+}
+
+.emp-ps-circle span {
+  color: var(--orange);
+  font-size: 17.5cqw;
+  font-weight: 600;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.emp-ps-col p {
+  margin: 0;
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  line-height: 1.55;
+  color: #555;
+  white-space: pre-line;
+}
+
+/* ---------- Diversified + Career Information ---------- */
+.emp-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2.5rem) clamp(3rem, 6vw, 5rem);
+}
+
+.emp-div-photo {
+  position: relative;
+  display: block;
+  aspect-ratio: 1.46 / 1;
+  background: #d9dbe2;
+  overflow: hidden;
+}
+
+.emp-div-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  user-select: none;
+}
+
+.emp-div-card:hover .emp-div-photo img { transform: scale(1.04); }
+
+.emp-div-overlay {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+  color: #fff;
+  font-size: clamp(1.6rem, 3.6vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.emp-div-caption {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: clamp(1.15rem, 2vw, 1.75rem);
+  font-weight: 300;
+  color: #1f1f24;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.emp-div-caption:hover,
+.emp-div-caption:focus-visible {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+@media (max-width: 900px) {
+  .emp-ps-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 640px) {
+  .emp-div { grid-template-columns: 1fr; }
+}

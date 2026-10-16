@@ -1,0 +1,16 @@
+.pillars-container {
+  width: 100%;
+  /* Optional: Background color to match the image background if the screen is very wide */
+  background-color: #333; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.pillars-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* Ensures it covers the area cleanly */
+}

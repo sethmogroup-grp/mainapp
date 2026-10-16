@@ -1,0 +1,273 @@
+/* =========================================================
+   SETHMO HIGHLIGHTS AND LATEST UPDATES
+========================================================= */
+.hl {
+  --navy: #272f4d;
+  --orange: #f47b20;
+  width: 100%;
+  padding: 4.5rem 0 5rem;
+  background: #1b1f2d;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.hl-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.hl-title {
+  margin: 0 0 2.25rem;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+}
+
+.hl-row {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.hl-row-report {
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 1.6rem;
+}
+
+.hl-row-feature {
+  grid-template-columns: 1.62fr 1fr 1fr;
+  align-items: start;
+}
+
+/* ---------- Shared card shell ---------- */
+.hl-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
+/* ---------- Report cards (top row) ---------- */
+.hl-report-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11.1;
+  background: var(--navy);
+  overflow: hidden;
+}
+
+.hl-report-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.hl-card:hover .hl-report-img img {
+  transform: scale(1.08);
+}
+
+.hl-report-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: #e4e6ea;
+  padding: 0.9rem 1rem;
+  min-height: 92px;
+}
+
+.hl-report-heading {
+  margin: 0 0 0.2rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+}
+
+.hl-report-sub {
+  margin: 0 0 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #4b4f5c;
+  line-height: 1.3;
+}
+
+.hl-report-year {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.hl-arrow {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--navy);
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hl-arrow:hover {
+  transform: translateX(2px);
+  background: #1b2138;
+}
+
+.hl-arrow-dark {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  background: var(--navy);
+  z-index: 3;
+}
+
+/* ---------- Feature cards (bottom row) ---------- */
+.hl-feature-wrap { display: flex; flex-direction: column; }
+
+.hl-feature {
+  position: relative;
+  aspect-ratio: 16 / 15.4;
+  color: #fff;
+}
+
+.hl-feature-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 1.6rem 1.5rem;
+  background: var(--panel);
+}
+
+.hl-feature-heading {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.12;
+  max-width: 65%;
+}
+
+.hl-feature-sub {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  font-weight: 500;
+  max-width: 62%;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hl-feature-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.hl-feature-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.hl-feature:hover .hl-feature-img img {
+  transform: scale(1.08);
+}
+
+/* photo cards: darken the left edge so the text panel stays readable over the photo */
+.hl-feature:not(.hl-feature-light) .hl-feature-panel {
+  background: linear-gradient(100deg, var(--panel) 46%, transparent 78%);
+}
+
+.hl-feature-light .hl-feature-panel {
+  background: #fff;
+  color: var(--navy);
+  position: static;
+  padding-bottom: 0.6rem;
+}
+
+.hl-feature-light .hl-feature-heading,
+.hl-feature-light .hl-feature-sub {
+  max-width: 100%;
+  color: var(--navy);
+}
+
+.hl-feature-light .hl-feature-img {
+  position: relative;
+  aspect-ratio: 16 / 7.4;
+}
+
+.hl-feature-light { display: flex; flex-direction: column; }
+
+.hl-person-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--orange);
+  font-size: 0.78rem;
+}
+
+.hl-person-bar strong { font-weight: 700; }
+.hl-person-bar span { font-weight: 500; opacity: 0.92; }
+
+/* ---------- Caption under feature cards ---------- */
+.hl-caption {
+  margin-top: 0.9rem;
+  max-width: 92%;
+}
+
+.hl-caption p {
+  margin: 0 0 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #dfe1e8;
+}
+
+.hl-caption-btn {
+  display: inline-block;
+  padding: 0.4rem 1.3rem;
+  border-radius: 6px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hl-caption-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(244, 123, 32, 0.35);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .hl-row-report { grid-template-columns: repeat(2, 1fr); }
+  .hl-row-feature { grid-template-columns: 1fr 1fr; }
+  .hl-feature-wrap:first-child { grid-column: 1 / -1; }
+  .hl-feature-wrap:first-child .hl-feature { aspect-ratio: 16 / 8; }
+}
+
+@media (max-width: 640px) {
+  .hl { padding: 3.25rem 0 3.5rem; }
+  .hl-row-report { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .hl-row-feature { grid-template-columns: 1fr; gap: 1.6rem; }
+  .hl-feature-wrap:first-child .hl-feature { aspect-ratio: 16 / 12; }
+  .hl-report-footer { min-height: 78px; padding: 0.7rem 0.8rem; }
+  .hl-report-heading { font-size: 0.78rem; }
+}

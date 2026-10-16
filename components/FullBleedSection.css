@@ -1,0 +1,74 @@
+/* =========================================
+   FULL-BLEED IMAGE SECTION
+   Fills the viewport edge-to-edge (no side padding),
+   matching the wide banner reference sample.
+========================================= */
+.full-bleed-section {
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 0;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.full-bleed-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.full-bleed-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4% 6%;
+  background: linear-gradient(90deg, rgba(2, 20, 56, 0.55) 0%, rgba(2, 20, 56, 0.05) 60%);
+}
+
+.full-bleed-eyebrow {
+  color: #ffffff;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.full-bleed-title {
+  color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  max-width: 600px;
+}
+
+.full-bleed-cta {
+  color: #ffffff;
+  background: #12a8d9;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  padding: 0.7rem 1.4rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .full-bleed-overlay {
+    padding: 6% 6%;
+    background: linear-gradient(180deg, rgba(2, 20, 56, 0.6) 0%, rgba(2, 20, 56, 0.15) 70%);
+  }
+
+  .full-bleed-title {
+    max-width: 100%;
+  }
+}

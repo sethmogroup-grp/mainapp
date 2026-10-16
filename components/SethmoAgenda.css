@@ -1,0 +1,236 @@
+/* =========================================================
+   SUSTAINABILITY AGENDA 2037 BANNER
+   Full width, same proportions as the approved artwork (1568 x 771).
+   Everything is placed in % and sized in cqw, so it scales as one piece
+   and nothing shrinks out of place. Below 1000px it stacks.
+========================================================= */
+.ag {
+  --navy: #272f4d;
+  --orange: #f5821f;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1568 / 771;
+  container-type: inline-size;
+  overflow: hidden;
+  background: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ---------- navy panel (left 63.07%) ---------- */
+.ag-navy {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 63.07%;
+  height: 100%;
+  background: var(--navy);
+  color: #fff;
+  overflow: hidden;
+}
+
+.ag-navy > * { position: absolute; margin: 0; }
+
+/* owl illustrations - same places as the artwork */
+.ag-owls {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ag-eyebrow { left: 7.58%; top: 8.7%; font-size: 1.4cqw; line-height: 1.9cqw; font-weight: 300; }
+
+.ag-heading {
+  left: 7.58%;
+  top: 20.8%;
+  font-size: 3cqw;
+  line-height: 3.5cqw;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  white-space: pre-line;
+}
+
+.ag-btn {
+  left: 7.68%;
+  top: 53.3%;
+  width: 22.2%;
+  height: 6.74%;
+  box-sizing: border-box;
+  padding-left: 2.4%;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  background: var(--orange);
+  color: #fff;
+  font-size: 1.75cqw;
+  font-weight: 300;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.ag-btn:hover,
+.ag-btn:focus-visible { background: #e06f0d; transform: translateY(-2px); }
+
+.ag-intro { left: 51.97%; top: 8.95%; font-size: 1.4cqw; line-height: 1.92cqw; font-weight: 300; white-space: pre-line; }
+.ag-lead { left: 51.9%; top: 29.6%; font-size: 1.3cqw; line-height: 1.66cqw; font-weight: 300; white-space: pre-line; }
+
+.ag-quote { left: 52.4%; top: 40.2%; width: 45%; height: 6.2%; }
+.ag-quote i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.26cqw;
+  height: 100%;
+  background: var(--orange);
+}
+.ag-quote p {
+  position: absolute;
+  left: 1.05cqw;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  font-size: 1.3cqw;
+  line-height: 1.6cqw;
+  font-weight: 300;
+  white-space: pre-line;
+}
+
+.ag-pillars-title { left: 51.8%; top: 48.9%; font-size: 1.3cqw; line-height: 1.66cqw; font-weight: 300; }
+
+.ag-pillars {
+  left: 51.8%;
+  top: 55%;
+  padding: 0;
+  list-style: none;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: 1.2cqw;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ag-pillars li {
+  display: flex;
+  align-items: center;
+  height: 2.56cqw;
+  white-space: nowrap;
+}
+
+.ag-dot {
+  flex: 0 0 auto;
+  position: relative;
+  width: 0.78cqw;
+  height: 0.78cqw;
+  margin-right: 0.85cqw;
+  border-radius: 50%;
+  background: var(--orange);
+}
+.ag-dot::after {
+  content: '';
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  top: 50%;
+  height: 0.16cqw;
+  margin-top: -0.08cqw;
+  background: var(--navy);
+}
+
+/* ---------- white panel (right) ---------- */
+.ag-white {
+  position: absolute;
+  left: 63.07%;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.ag-white > * { position: absolute; margin: 0; }
+
+.ag-vision-heading {
+  left: 14.85%;
+  top: 7.1%;
+  font-size: 2.4cqw;
+  line-height: 3.2cqw;
+  font-weight: 600;
+  color: var(--orange);
+  letter-spacing: -0.01em;
+}
+
+.ag-logo { left: 2.25%; top: 16.6%; width: 55.8%; height: auto; user-select: none; }
+
+.ag-stat {
+  left: 7.94%;
+  top: 63.2%;
+  color: var(--orange);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  z-index: 2;
+}
+.ag-stat strong { display: block; font-size: 3.3cqw; line-height: 4cqw; font-weight: 600; }
+.ag-stat span { display: block; margin-top: 0.4cqw; font-size: 2.9cqw; line-height: 3.2cqw; white-space: pre-line; }
+
+.ag-person {
+  right: 0;
+  top: -0.65%;
+  height: 102.5%;
+  width: auto;
+  max-width: 80%;
+  object-fit: contain;
+  object-position: right top;
+  user-select: none;
+}
+
+/* ---------- stacked (tablet / phone) ---------- */
+@media (max-width: 1000px) {
+  .ag {
+    aspect-ratio: auto;
+    container-type: normal;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ag-navy,
+  .ag-white {
+    position: relative;
+    left: auto;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .ag-navy { padding: 3rem 1.5rem 3.2rem; }
+  .ag-navy > * { position: relative; left: auto; top: auto; }
+  .ag-owls { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+  .ag-navy > *:not(.ag-owls) { z-index: 1; }
+
+  .ag-eyebrow { font-size: 1rem; line-height: 1.4; }
+  .ag-heading { margin: 1rem 0 1.6rem; font-size: clamp(2rem, 7vw, 2.8rem); line-height: 1.18; }
+  .ag-btn { width: auto; height: auto; padding: 0.85rem 1.6rem; font-size: 1.25rem; display: inline-flex; }
+  .ag-intro { margin-top: 2.2rem; font-size: 1.05rem; line-height: 1.5; white-space: normal; }
+  .ag-lead { margin-top: 1rem; font-size: 1rem; line-height: 1.5; white-space: normal; }
+
+  .ag-quote { width: auto; height: auto; margin-top: 1.2rem; padding-left: 1rem; }
+  .ag-quote i { width: 3px; }
+  .ag-quote p { position: static; transform: none; font-size: 1rem; line-height: 1.5; white-space: normal; }
+
+  .ag-pillars-title { margin-top: 1.4rem; font-size: 1rem; line-height: 1.5; }
+  .ag-pillars { margin-top: 0.8rem; font-size: 0.95rem; }
+  .ag-pillars li { height: auto; padding: 0.45rem 0; white-space: normal; }
+  .ag-dot { width: 0.8rem; height: 0.8rem; margin-right: 0.7rem; }
+  .ag-dot::after { height: 2px; margin-top: -1px; }
+
+  .ag-white { padding: 2.2rem 1.5rem 0; min-height: 420px; display: flex; flex-direction: column; align-items: flex-start; }
+  .ag-white > * { position: relative; left: auto; top: auto; right: auto; }
+  .ag-vision-heading { font-size: 1.9rem; line-height: 1.2; }
+  .ag-logo { width: min(100%, 420px); margin-top: 1rem; }
+  .ag-stat { margin-top: 1.6rem; }
+  .ag-stat strong { font-size: 2.6rem; line-height: 1.1; }
+  .ag-stat span { font-size: 2.1rem; line-height: 1.15; }
+  .ag-white { min-height: 0; padding-bottom: 0; }
+  .ag-person { align-self: flex-end; height: 380px; width: auto; max-width: 62%; margin-top: -9rem; }
+}

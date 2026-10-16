@@ -1,0 +1,239 @@
+/* ContactUs.css – Overlap Fixed – Phone Size Preserved */
+
+.contact-section {
+  width: 100%;
+  background-color: #d3121b;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  padding: 4rem 2rem;
+  font-family: sans-serif;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= LEFT SIDE ================= */
+
+.contact-visuals {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  overflow: hidden; /* Prevent text spill */
+}
+
+/* ✅ BACKGROUND TEXT FIXED */
+.bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 900;
+  color: #ffcc00;
+  white-space: nowrap;
+  z-index: 1;
+  opacity: 0.12; /* Softer so it never competes */
+  text-transform: capitalize;
+  line-height: 1;
+  pointer-events: none;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* ================= PHONE (SIZE NOT CHANGED) ================= */
+
+.phone-mockup {
+  position: relative;
+  z-index: 2;
+  width: 200px;   /* 🚫 NOT CHANGED */
+  height: 380px;  /* 🚫 NOT CHANGED */
+  background-color: #1a1a1a;
+  border-radius: 30px;
+  border: 4px solid #ff5555;
+  padding: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  display: flex;
+  flex-shrink: 0; /* Prevent shrink on desktop */
+  overflow: hidden;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 1rem 1.5rem 1rem;
+  position: relative;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+
+/* ================= PHONE CONTENT ================= */
+
+.phone-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.phone-avatar-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  flex-shrink: 0;
+}
+
+.phone-contact-name {
+  color: #ffcc00;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.phone-status {
+  color: #888;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.phone-footer {
+  margin-bottom: 15px;
+}
+
+.call-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.call-btn.decline {
+  background-color: #ff3b30;
+  color: white;
+  transform: rotate(135deg);
+}
+
+.phone-home-bar {
+  width: 40%;
+  height: 4px;
+  background-color: #555;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 8px;
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.contact-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.contact-heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffcc00;
+  margin: 0;
+  line-height: 1.2;
+  word-wrap: break-word;
+}
+
+.contact-desc {
+  color: white;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 500px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.contact-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 12px 35px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.contact-btn:hover {
+  background: white;
+  color: #d3121b;
+}
+
+/* ================= DESKTOP ================= */
+
+@media (min-width: 992px) {
+
+  .contact-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .contact-visuals {
+    width: 50%;
+    justify-content: flex-start;
+    padding-left: 2rem;
+  }
+
+  /* Softer & positioned correctly */
+  .bg-text {
+    font-size: clamp(6rem, 8vw, 10rem);
+    left: 40%;
+    transform: translate(0, -50%);
+    text-align: left;
+    opacity: 0.08;
+  }
+
+  .phone-mockup {
+    margin-left: 4rem;
+  }
+
+  .contact-content {
+    width: 45%;
+    align-items: flex-start;
+    text-align: left;
+    padding-right: 2rem;
+  }
+}

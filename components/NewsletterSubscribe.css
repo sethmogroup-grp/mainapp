@@ -1,0 +1,146 @@
+/* =========================================================
+   NEWSLETTER SUBSCRIBE BANNER
+========================================================= */
+.nl {
+  --navy: #272f4d;
+  width: 100%;
+  padding: 3rem 0;
+  background-color: var(--panel, #f47b20);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0px,
+    rgba(255, 255, 255, 0.07) 2px,
+    transparent 2px,
+    transparent 10px
+  );
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.nl-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.nl-rule {
+  display: block;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
+  margin-bottom: 1.8rem;
+}
+
+.nl-row {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.nl-icon {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nl-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.nl-copy {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.nl-copy h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.nl-copy p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.94);
+  max-width: 620px;
+}
+
+.nl-form {
+  flex: 0 0 auto;
+}
+
+.nl-field-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.nl-field-row input {
+  width: 230px;
+  padding: 0.65rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  background: #fbc79a;
+  color: var(--navy);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.nl-field-row input::placeholder { color: #6b5230; opacity: 0.85; }
+.nl-field-row input:focus { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6); }
+
+.nl-field-row button {
+  padding: 0.65rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.nl-field-row button:hover:not(:disabled) {
+  background: #1b2138;
+  transform: translateY(-1px);
+}
+
+.nl-field-row button:disabled,
+.nl-field-row input:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.nl-status {
+  margin: 0.5rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.nl-status-ok { color: #eafff0; }
+.nl-status-error { color: #fff1e8; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .nl-row { flex-wrap: wrap; }
+  .nl-form { width: 100%; }
+  .nl-field-row { width: 100%; }
+  .nl-field-row input { flex: 1 1 auto; width: auto; }
+}
+
+@media (max-width: 480px) {
+  .nl-field-row { flex-direction: column; }
+  .nl-field-row button { width: 100%; }
+}
